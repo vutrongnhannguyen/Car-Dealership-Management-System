@@ -9,7 +9,7 @@ public class WelcomeScreen {
         System.out.println("s4028019, Nguyen Vu Trong Nhan");
         System.out.println("s3914580, Khang Lam");
         System.out.println("s3979361, Chung Chi Vi");
-        System.out.println("s3864111, Anh Khoa");
+        System.out.println("s3864111, Duong Hoang Anh Khoa");
         System.out.println("**********************************\n");
     }
 }
