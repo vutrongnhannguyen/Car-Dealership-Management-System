@@ -548,6 +548,11 @@ public class Main {
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = br.readLine()) != null) {
+                // Skip empty lines or lines without enough data
+                if (line.trim().isEmpty() || line.split(",").length < 6) {
+                    continue;
+                }
+
                 String[] data = line.split(",");
                 User user;
                 switch (data[2]) { // userType
