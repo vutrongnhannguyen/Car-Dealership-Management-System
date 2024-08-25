@@ -1,0 +1,6 @@
+s-001,2022-03-31,u-001,m-001,Brake replacement,"p-001,p-002",100.0,Replace brake in the front,true
+s-002,2024-02-20,u-002,m-003,Tire Replacement,"p-001",1200.0,Replaced all tires with new ones,true
+s-003,2024-09-01,u-003,m-007,Fuel change,"",50.0,Change fuel,true
+s-004,2022-03-23,u-003,m-001,Light replacement,"p-001,p-002",1600.0,Replace 2 front lights,true
+s-005,2022-02-20,u-003,m-004,Bulb replacement,"p-001,p-002,p-003,p-004",1500.0,Reaplce 2 end bulbs,true
+s-005,2024-02-12,u-003,m-001,Light,"p-001,p-002",150.0,no note,true

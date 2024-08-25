@@ -1,0 +1,100 @@
+public class AutoPart {
+    private String partID;
+    private String name;
+    private String manufacturer;
+    private String partNumber;
+    private String condition; // New, Used, Refurbished
+    private String warranty;
+    private double cost;
+    private String notes;
+    private boolean isActive;
+
+    public AutoPart(String partID, String name, String manufacturer, String partNumber, String condition, String warranty, double cost, String notes) {
+        this.partID = partID;
+        this.name = name;
+        this.manufacturer = manufacturer;
+        this.partNumber = partNumber;
+        this.condition = condition;
+        this.warranty = warranty;
+        this.cost = cost;
+        this.notes = notes;
+        this.isActive = true; // Default is active
+    }
+
+    public String getPartID() {
+        return partID;
+    }
+
+    public void setPartID(String partID) {
+        this.partID = partID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public String getPartNumber() {
+        return partNumber;
+    }
+
+    public void setPartNumber(String partNumber) {
+        this.partNumber = partNumber;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
+    public String getWarranty() {
+        return warranty;
+    }
+
+    public void setWarranty(String warranty) {
+        this.warranty = warranty;
+    }
+
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    @Override
+    public String toString() {
+        return "Part ID: " + partID + ", Name: " + name + ", Manufacturer: " + manufacturer;
+    }
+}

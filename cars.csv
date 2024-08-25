@@ -1,0 +1,8 @@
+c-001,Toyota,Corolla,2018,30000,White,Sold,15000.0,null,true
+c-002,Honda,Civic,2020,20000,Black,sold,18000.0,null,true
+c-003,Ford,Focus,2019,25000,Blue,Sold,17000.0,null,true
+c-004,Chevrolet,Malibu,2021,10000,Red,sold,22000.0,null,true
+c-005,Nissan,Altima,2017,40000,Gray,Sold,14000.0,null,true
+c-006,Suzuki,Civic,2021,20000,Black,sold,12000.0,null,true
+c-010,Toyota,Corolla,2022,30000,White,Available,12000.0,null,true
+c-011,Honda,Civic,2021,20000,Black,Available,18000.0,null,true
