@@ -1,8 +1,20 @@
-c-001,Toyota,Corolla,2018,30000,White,Sold,15000.0,null,true
-c-002,Honda,Civic,2020,20000,Black,sold,18000.0,null,true
-c-003,Ford,Focus,2019,25000,Blue,Sold,17000.0,null,true
-c-004,Chevrolet,Malibu,2021,10000,Red,sold,22000.0,null,true
-c-005,Nissan,Altima,2017,40000,Gray,Sold,14000.0,null,true
-c-006,Suzuki,Civic,2021,20000,Black,sold,12000.0,null,true
-c-010,Toyota,Corolla,2022,30000,White,Available,12000.0,null,true
-c-011,Honda,Civic,2021,20000,Black,Available,18000.0,null,true
+c-001,Toyota,Vios,2021,30000,White,Sold,4.5E8,"Oil change,Battery replacement",Good condition
+c-002,Honda,CR-V,2019,50000,Black,Sold,8.0E8,"Tire replacement,Brake inspection",One previous owner
+c-003,Hyundai,Elantra,2020,25000,Blue,Available,6.2E8,"Spark plug replacement",No accidents
+c-004,Mazda,CX-5,2022,10000,Red,Sold,9.0E8,"First service check",Like new
+c-005,Kia,Seltos,2020,20000,Grey,Sold,7.0E8,"Engine oil change",Still under warranty
+c-006,VinFast,Lux A2.0,2021,18000,White,Sold,1.1E9,"Tire replacement,Brake service",Great performance
+c-007,Ford,Ranger,2018,70000,Black,Available,9.5E8,"Battery replacement",Well-maintained
+c-008,Honda,City,2017,85000,Silver,Sold,5.0E8,"Transmission check",Good for daily use
+c-009,Mitsubishi,Outlander,2019,40000,Black,Available,8.8E8,"Suspension adjustment",Low mileage
+c-010,Nissan,X-Trail,2020,30000,Red,Sold,7.8E8,"Brake replacement",Spacious interior
+c-011,Toyota,Fortuner,2018,60000,White,Available,9.5E8,"Engine tuning",Popular SUV
+c-012,Kia,Morning,2016,90000,Blue,Sold,3.2E8,"Battery replacement",Affordable city car
+c-013,Hyundai,Santa Fe,2022,15000,Grey,Sold,1.25E9,"First service check",Top-tier condition
+c-014,Mazda,3,2021,20000,Black,Sold,6.8E8,"Engine oil change",Smooth driving experience
+c-015,VinFast,Fadil,2019,25000,Yellow,Available,4.0E8,"No service done",Compact and reliable
+c-016,Ford,Everest,2020,35000,Bronze,Available,1.15E9,"Tire rotation",Great for off-road
+c-017,Honda,Brio,2020,30000,Orange,Available,4.8E8,"No service done",Fuel efficient
+c-018,Mitsubishi,Attrage,2018,60000,Grey,Sold,4.5E8,"Spark plug replacement",Budget-friendly
+c-019,Nissan,Sunny,2017,80000,Black,Available,3.5E8,"Brake check",Good resale value
+c-020,Suzuki,Ciaz,2019,45000,White,Sold,5.2E8,"No service done",Spacious and comfortable
