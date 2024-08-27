@@ -14,16 +14,18 @@ public class Main {
     private static List<Transaction> transactions = new ArrayList<>();
 
     public static void main(String[] args) {
-        System.out.println("--------------------------");
-        System.out.println("COSC2081 GROUP ASSIGNMENT");
-        System.out.println("AUTO168 CAR DEALERSHIP MANAGEMENT SYSTEM");
-        System.out.println("Instructor: Mr. Minh Vu & Mr. Dung Nguyen");
-        System.out.println("Group: Team 4");
-        System.out.println("s, Chung Chi Vi");
-        System.out.println("s3864111, Duong Hoang Anh Khoa");
-        System.out.println("s, Nguyen Vu Trong Nhan");
-        System.out.println("--------------------------");
+//        System.out.println("--------------------------");
+//        System.out.println("COSC2081 GROUP ASSIGNMENT");
+//        System.out.println("AUTO168 CAR DEALERSHIP MANAGEMENT SYSTEM");
+//        System.out.println("Instructor: Mr. Minh Vu & Mr. Dung Nguyen");
+//        System.out.println("Group: Team 4");
+//        System.out.println("s, Chung Chi Vi");
+//        System.out.println("s3864111, Duong Hoang Anh Khoa");
+//        System.out.println("s, Nguyen Vu Trong Nhan");
+//        System.out.println("--------------------------");
 
+        WelcomeScreen screen = new WelcomeScreen();
+        screen.display();
         // Load data from CSV files
         cars = readCars();
         parts = readParts();
