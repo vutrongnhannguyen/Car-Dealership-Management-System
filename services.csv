@@ -1,0 +1,25 @@
+s-001,2024-01-05,u-010,u-006,Replace Light - Replace Battery,"p-001,p-004",2000000.0,Changed both headlights - Installed new battery
+s-002,2024-01-05,u-011,u-007,Replace Air Filter - Replace Spark Plug,"p-002,p-003",750000.0,Installed reusable filter - Standard spark plug
+s-003,2024-01-05,u-012,u-008,Replace Wheels,"p-005",1600000.0,High-performance wheels
+s-004,2024-01-15,u-013,u-009,Replace Headlight - Replace Radiator - Replace Battery,"p-007,p-008,p-004",5500000.0,Bright LED headlights - Improved cooling - Replaced used battery
+s-005,2024-01-15,u-014,u-006,Replace Exhaust Pipe,"p-010",1800000.0,Enhanced exhaust sound
+s-006,2024-02-05,u-015,u-007,Replace Fuel Pump - Replace Suspension Kit,"p-011,p-012",500000.0,Durable fuel pump - Smooth ride experience
+s-007,2024-02-05,u-010,u-008,Replace Tranmission Fluid,"p-013",800000.0,Synthetic fluid
+s-008,2024-02-05,u-012,u-007,Replace Tires - Replace Winshield,"p-015,p-016",6300000.0,High grip tires - Clear and strong windshield
+s-009,2024-03-10,u-013,u-006,Replace Clutch Plate,"p-017",2000000.0,Heavy-duty clutch 
+s-010,2024-03-10,u-014,u-007,Replace Car Battery - Replace Steering Wheel,"p-019,p-020",1.29E7,Maintainance-free battery - Comfortable grip
+s-011,2024-03-10,u-012,u-009,Replace Timing Belt - Replace Door Hanlde,"p-021,p-022",2800000.0,Durable timing belt - Sleek design handle
+s-012,2024-03-25,u-015,u-008,Replace Fuel Injector - Replace Brake Disc,"p-023,p-024",3300000.0,Improved fuel efficiency - Heat resistant
+s-013,2024-03-25,u-011,u-007,Replace Alternator Belt - Replace Air Filter - Replace Spark Plug,"p-025,p-002,p-014",3575000.0,Quiet operation - Reusable air filter - Long-lasting spark plug
+s-014,2024-04-15,u-010,u-009,Replace Tires,"p-015",2817000.0,High grip tires
+s-015,2024-04-15,u-014,u-006,Replace Winshield - Replace Brake Pads,"p-016,p-006",4100000.0,Clear and strong windshield - High-performance brakes
+s-016,2014-04-15,u-012,u-007,Replace Exhaust Pipe - Replace Tranmission Fluid,"p-010,p-013",2500000.0,Enhanced exhaust sound - Synthetic fluid
+s-017,2024-05-10,u-013,u-009,Replace Car Battery - Replace Clutch Plate,"p-019,p-017",2800000.0,Maintenance-free battery - Heavy-duty clutch
+s-018,2024-05-10,u-015,u-006,Replace Oil Filter - Replace Air Filter,"p-018,p-002",1220000.0,High filtration efficiency - Reusable air filter
+s-019,2024-05-10,u-011,u-008,Replace Light - Replace Spark Plug,"p-001,p-014",1250000.0,Changed 1 headlight - Standard spark plug
+s-020,2024-06-15,u-015,u-009,Replace Timing Belt - Replace Oil Filter,"p-021,p-018",1590000.0,Durable timing belt - High filtration efficiency
+s-021,2024-06-15,u-010,u-007,Replace Steering Wheel,"p-020",8599000.0,Comfortable grip
+s-022,2024-06-15,u-012,u-006,Replace Door Handle,"p-022",2990000.0,Sleek design door handle
+s-023,2024-06-15,u-013,u-008,Replace Fuel Injector - Replace Transmission Fluid,"p-023,p-013",2900000.0,Improved fuel efficiency - Synthetic fluid
+s-024,2024-07-01,u-015,u-009,Replace Brake Disc - Replace Exhaust Pipe,"p-024,p-010",2800000.0,Heat resistant - Enhanced exhaust sound
+s-025,2024-07-15,u-010,u-007,Replace Alternator Belt - Replace Timing Belt,"p-025,p-021",1300000.0,Quiet operation - Durable timing belt
