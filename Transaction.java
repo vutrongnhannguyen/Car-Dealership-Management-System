@@ -1,6 +1,4 @@
 import java.time.LocalDate;
-import java.time.YearMonth;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class Transaction {
@@ -12,67 +10,93 @@ public class Transaction {
     private double discount;
     private double totalAmount;
     private String notes;
-    private boolean isActive;
 
     public Transaction(String transactionID, LocalDate transactionDate, String clientID, String salespersonID, List<Object> purchasedItems, double discount, double totalAmount, String notes) {
-        this.transactionID = transactionID;
+        setTransactionID(transactionID);
         this.transactionDate = transactionDate;
         this.clientID = clientID;
-        this.salespersonID = salespersonID;
+        setSalespersonID(salespersonID);
         this.purchasedItems = purchasedItems;
         this.discount = discount;
         this.totalAmount = totalAmount;
         this.notes = notes;
-        this.isActive = true; // Default is active
     }
 
     public String getTransactionID() {
         return transactionID;
     }
 
+    public void setTransactionID(String transactionID) {
+        if (transactionID.matches("t-\\d+")) {
+            this.transactionID = transactionID;
+        } else {
+            throw new IllegalArgumentException("Invalid transaction ID format");
+        }
+    }
+
     public LocalDate getTransactionDate() {
         return transactionDate;
+    }
+
+    public void setTransactionDate(LocalDate transactionDate) {
+        this.transactionDate = transactionDate;
     }
 
     public String getClientID() {
         return clientID;
     }
 
+    public void setClientID(String clientID) {
+        this.clientID = clientID;
+    }
+
     public String getSalespersonID() {
         return salespersonID;
+    }
+
+    public void setSalespersonID(String salespersonID) {
+        if (salespersonID.matches("u-\\d+")) {
+            this.salespersonID = salespersonID;
+        } else {
+            throw new IllegalArgumentException("Invalid Sales person ID format");
+        }
+    }
+
+    public List<Object> getPurchasedItems() {
+        return purchasedItems;
+    }
+
+    public void setPurchasedItems(List<Object> purchasedItems) {
+        this.purchasedItems = purchasedItems;
     }
 
     public double getDiscount() {
         return discount;
     }
 
-    public String getNotes() {
-        return notes;
+    public void setDiscount(double discount) {
+        this.discount = discount;
     }
 
     public double getTotalAmount() {
         return totalAmount;
     }
 
-    public boolean isActive() {
-        return isActive;
+    public void setTotalAmount(double totalAmount) {
+        this.totalAmount = totalAmount;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public String getNotes() {
+        return notes;
     }
 
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
 
     public boolean isInPeriod(String period) {
         return false;
     }
-
-
-
-    public List<Object> getPurchasedItems() {
-        return purchasedItems;
-    }
-
     @Override
     public String toString() {
         return "Transaction ID: " + transactionID + ", Date: " + transactionDate + ", Total: " + totalAmount;
