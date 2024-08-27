@@ -8,7 +8,7 @@ public class User {
     protected boolean isActive;
 
     public User(String userID, String fullName, String userType, String username, String password) {
-        this.userID = userID;
+        setUserID(userID);
         this.fullName = fullName;
         this.userType = userType;
         this.username = username;
@@ -20,12 +20,48 @@ public class User {
         return this.username.equals(username) && this.password.equals(password) && isActive;
     }
 
-    public String getUserType() {
-        return userType;
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        if (userID.matches("u-\\d+")) {
+            this.userID = userID;
+        } else {
+            throw new IllegalArgumentException("Invalid User ID format");
+        }
     }
 
     public String getFullName() {
         return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public boolean isActive() {
@@ -33,27 +69,7 @@ public class User {
     }
 
     public void setActive(boolean active) {
-        this.isActive = active;
-    }
-
-    public String getUserID() {
-        return userID;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String newPassword) {
-        this.password = newPassword;
-    }
-
-    public void deactivate() {
-        this.isActive = false; // Soft delete
+        isActive = active;
     }
 
     @Override
@@ -169,10 +185,25 @@ class Manager extends User {
 }
 
 
-class Employee extends User {
+class Salesperson extends User {
 
-    public Employee(String userID, String fullName, String username, String password) {
-        super(userID, fullName, "Employee", username, password);
+    public Salesperson(String userID, String fullName, String username, String password) {
+        super(userID, fullName, "Salesperson", username, password);
+    }
+
+    public void calculateRevenue(List<Transaction> transactions, String period) {
+
+    }
+
+    public void listCarsOrServices(List<Car> cars, List<Service> services, String period) {
+
+    }
+}
+
+class Mechanic extends User {
+
+    public Mechanic(String userID, String fullName, String username, String password) {
+        super(userID, fullName, "Mechanic", username, password);
     }
 
     public void calculateRevenue(List<Transaction> transactions, String period) {
@@ -185,12 +216,55 @@ class Employee extends User {
 }
 
 class Client extends User {
+    private String membership;
+    private double totalSpending;
+
     public Client(String userID, String fullName, String username, String password) {
         super(userID, fullName, "Client", username, password);
+        this.membership = "None"; // Default membership level
+        this.totalSpending = 0.0;
+    }
+
+    public String getMembership() {
+        return membership;
+    }
+
+    public double getTotalSpending() {
+        return totalSpending;
+    }
+
+    public void updateTotalSpending(double amount) {
+        this.totalSpending += amount;
+        updateMembership(); // Update membership based on the new total spending
+    }
+
+    public void updateMembership() {
+        if (totalSpending > 250_000_000) {
+            membership = "Platinum";
+        } else if (totalSpending > 100_000_000) {
+            membership = "Gold";
+        } else if (totalSpending > 30_000_000) {
+            membership = "Silver";
+        } else {
+            membership = "None";
+        }
+    }
+
+    public double getDiscountRate() {
+        switch (membership) {
+            case "Silver":
+                return 0.05;
+            case "Gold":
+                return 0.10;
+            case "Platinum":
+                return 0.15;
+            default:
+                return 0.0;
+        }
     }
 
     public void viewMembershipStatus() {
-        System.out.println("Your current membership status is: Silver");
+        System.out.println("Your membership is: " + membership);
     }
 
     public void viewServiceHistory(List<Service> services, String clientID) {
@@ -203,7 +277,23 @@ class Client extends User {
             }
         }
         if (!hasServices) {
-            System.out.println("No service history found for this client.");
+            System.out.println("No service history found for this client");
         }
+    }
+
+    // Methods to modify profile information
+    public void updateFullName(String newFullName) {
+        this.fullName = newFullName;
+        System.out.println("Full name updated successfully");
+    }
+
+    public void updateUsername(String newUsername) {
+        this.username = newUsername;
+        System.out.println("Username updated successfully");
+    }
+
+    public void updatePassword(String newPassword) {
+        this.password = newPassword;
+        System.out.println("Password updated successfully");
     }
 }
