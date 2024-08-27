@@ -7,10 +7,9 @@ public class AutoPart {
     private String warranty;
     private double cost;
     private String notes;
-    private boolean isActive;
 
     public AutoPart(String partID, String name, String manufacturer, String partNumber, String condition, String warranty, double cost, String notes) {
-        this.partID = partID;
+        setPartID(partID);
         this.name = name;
         this.manufacturer = manufacturer;
         this.partNumber = partNumber;
@@ -18,7 +17,6 @@ public class AutoPart {
         this.warranty = warranty;
         this.cost = cost;
         this.notes = notes;
-        this.isActive = true; // Default is active
     }
 
     public String getPartID() {
@@ -26,7 +24,11 @@ public class AutoPart {
     }
 
     public void setPartID(String partID) {
-        this.partID = partID;
+        if (partID.matches("p-\\d+")) {
+            this.partID = partID;
+        } else {
+            throw new IllegalArgumentException("Invalid part ID format.");
+        }
     }
 
     public String getName() {
@@ -85,13 +87,6 @@ public class AutoPart {
         this.notes = notes;
     }
 
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
 
     @Override
     public String toString() {
