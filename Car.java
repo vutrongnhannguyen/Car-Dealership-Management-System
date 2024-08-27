@@ -1,6 +1,4 @@
 import java.time.LocalDate;
-import java.time.YearMonth;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class Car {
@@ -12,12 +10,11 @@ public class Car {
     private String color;
     private String status; // Available or Sold
     private double price;
-    private LocalDate soldDate;
-    private boolean isActive;
-    private List<Service> serviceHistory;
+    private List<String> serviceHistory;
+    private String notes;
 
-    public Car(String carID, String make, String model, int year, int mileage, String color, String status, double price, List<Service> serviceHistory) {
-        this.carID = carID;
+    public Car(String carID, String make, String model, int year, int mileage, String color, String status, double price, List<String> serviceHistory, String notes) {
+        setCarID(carID);
         this.make = make;
         this.model = model;
         this.year = year;
@@ -26,11 +23,19 @@ public class Car {
         this.status = status;
         this.price = price;
         this.serviceHistory = serviceHistory;
-        this.isActive = true; // Default is active
+        this.notes = notes;
     }
 
     public String getCarID() {
         return carID;
+    }
+
+    public void setCarID(String carID) {
+        if (carID.matches("c-\\d+")) {
+            this.carID = carID;
+        } else {
+            throw new IllegalArgumentException("Invalid car ID format.");
+        }
     }
 
     public String getMake() {
@@ -89,28 +94,20 @@ public class Car {
         this.price = price;
     }
 
-    public LocalDate getSoldDate() {
-        return soldDate;
-    }
-
-    public void setSoldDate(LocalDate soldDate) {
-        this.soldDate = soldDate;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
-    public List<Service> getServiceHistory() {
+    public List<String> getServiceHistory() {
         return serviceHistory;
     }
 
-    public void setServiceHistory(List<Service> serviceHistory) {
+    public void setServiceHistory(List<String> serviceHistory) {
         this.serviceHistory = serviceHistory;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
     public boolean isSoldInPeriod(String period) {
