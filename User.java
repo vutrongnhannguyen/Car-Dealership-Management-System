@@ -1,4 +1,6 @@
 import java.util.List;
+import java.util.Scanner;
+
 public class User {
     protected String userID;
     protected String fullName;
@@ -8,7 +10,7 @@ public class User {
     protected boolean isActive;
 
     public User(String userID, String fullName, String userType, String username, String password) {
-        this.userID = userID;
+        setUserID(userID);
         this.fullName = fullName;
         this.userType = userType;
         this.username = username;
@@ -20,12 +22,48 @@ public class User {
         return this.username.equals(username) && this.password.equals(password) && isActive;
     }
 
-    public String getUserType() {
-        return userType;
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        if (userID.matches("u-\\d+")) {
+            this.userID = userID;
+        } else {
+            throw new IllegalArgumentException("Invalid User ID format");
+        }
     }
 
     public String getFullName() {
         return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public boolean isActive() {
@@ -33,27 +71,145 @@ public class User {
     }
 
     public void setActive(boolean active) {
-        this.isActive = active;
+        isActive = active;
     }
 
-    public String getUserID() {
-        return userID;
-    }
+    public void displayMenu(Scanner scanner, List<Car> cars, List<AutoPart> parts, List<Service> services, List<Transaction> transactions, List<User> users) {
+        int choice = -1;
 
-    public String getUsername() {
-        return username;
-    }
+        while (choice != 0) {
+            System.out.println("\n--- MENU ---");
+            System.out.println("1. View Profile");
+            System.out.println("2. Logout");
 
-    public String getPassword() {
-        return password;
-    }
+            switch (getUserType()) {
+                case "Manager" -> {
+                    System.out.println("3. Add Car");
+                    System.out.println("4. Remove Car");
+                    System.out.println("5. Add Part");
+                    System.out.println("6. Remove Part");
+                    System.out.println("7. Add Service");
+                    System.out.println("8. Remove Service");
+                    System.out.println("9. Add Transaction");
+                    System.out.println("10. Remove Transaction");
+                    System.out.println("11. Remove User");
+                    System.out.println("12. View All Entities");
+                    System.out.println("13. Calculate Cars Sold in Month");
+                    System.out.println("14. Calculate Revenue");
+                    System.out.println("15. Calculate Revenue for Mechanic");
+                    System.out.println("16. Calculate Revenue for Salesperson");
+                    System.out.println("17. List Cars Sold");
+                    System.out.println("18. List Transactions");
+                    System.out.println("19. List Services");
+                    System.out.println("20. List Auto Parts Sold");
+                }
+                case "Salesperson", "Mechanic" -> {
+                    System.out.println("3. Calculate Revenue");
+                    System.out.println("4. List Cars or Services");
+                }
+                case "Client" -> {
+                    System.out.println("3. View Membership Status");
+                    System.out.println("4. View Service History");
+                    System.out.println("5. Update Full Name");
+                    System.out.println("6. Update Username");
+                    System.out.println("7. Update Password");
+                }
+            }
 
-    public void setPassword(String newPassword) {
-        this.password = newPassword;
-    }
+            System.out.print("Select an option: ");
+            choice = scanner.nextInt();
+            scanner.nextLine();
 
-    public void deactivate() {
-        this.isActive = false; // Soft delete
+            switch (choice) {
+                case 1:
+                    System.out.println("\n--- PROFILE ---");
+                    System.out.println(this);
+                    break;
+                case 2:
+                    System.out.println("Logging out");
+                    choice = 0; // Exit loop
+                    break;
+                case 3:
+                    switch (getUserType()) {
+                        case "Manager" -> CarManager.addCar(scanner, cars);
+                        case "Salesperson", "Mechanic" -> {
+                            System.out.print("Enter day/week/month to calculate revenue: ");
+                            String period = scanner.nextLine();
+                            ((Salesperson) this).calculateRevenue(transactions, period);
+                        }
+                        case "Client" -> ((Client) this).viewMembershipStatus();
+                    }
+                    break;
+                case 4:
+                    switch (getUserType()) {
+                        case "Manager" -> CarManager.removeCar(scanner, cars);
+                        case "Salesperson", "Mechanic" -> {
+                            System.out.print("Enter day/week/month to list cars or services: ");
+                            String period = scanner.nextLine();
+                            ((Salesperson) this).listCarsOrServices(cars, services, period);
+                        }
+                        case "Client" -> ((Client) this).viewServiceHistory(services, getUserID());
+                    }
+                    break;
+                case 5:
+                    if (getUserType().equals("Manager")) {
+                        PartManager.addPart(scanner, parts);
+                    } else if (this instanceof Client client) {
+                        System.out.print("Enter new full name: ");
+                        String newFullName = scanner.nextLine();
+                        client.updateFullName(newFullName);
+                        FileManager.writeUsers(users, "D:/programming1/asm3/users.csv"); // Save the updated user list to the CSV file
+                    }
+                    break;
+                case 6:
+                    if (getUserType().equals("Manager")) {
+                        PartManager.removePart(scanner, parts);
+                    } else if (this instanceof Client client) {
+                        System.out.print("Enter new username: ");
+                        String newUsername = scanner.nextLine();
+                        client.updateUsername(newUsername);
+                        FileManager.writeUsers(users, "D:/programming1/asm3/users.csv"); // Save the updated user list to the CSV file
+                    }
+                    break;
+                case 7:
+                    if (getUserType().equals("Manager")) {
+                        ServiceManager.addService(scanner, services, parts, users);
+                    } else if (this instanceof Client client) {
+                        System.out.print("Enter new password: ");
+                        String newPassword = scanner.nextLine();
+                        client.updatePassword(newPassword);
+                        FileManager.writeUsers(users, "D:/programming1/asm3/users.csv"); // Save the updated user list to the CSV file
+                    }
+                    break;
+                case 8:
+                    if (getUserType().equals("Manager")) {
+                        ServiceManager.removeService(scanner, services);
+                    }
+                    break;
+                case 9:
+                    if (getUserType().equals("Manager")) {
+                        TransactionManager.addTransaction(scanner, transactions, cars, parts, users);
+                    }
+                    break;
+                case 10:
+                    if (getUserType().equals("Manager")) {
+                        TransactionManager.removeTransaction(scanner, transactions);
+                    }
+                    break;
+                case 11:
+                    if (getUserType().equals("Manager")) {
+                        UserManager.removeUser(scanner, users);
+                    }
+                    break;
+                case 12:
+                    if (getUserType().equals("Manager")) {
+                        ((Manager) this).viewEntities(cars, parts, services, transactions);
+                    }
+                    break;
+                default:
+                    System.out.println("We don't have that option");
+            }
+        }
     }
 
     @Override
@@ -65,62 +221,6 @@ public class User {
 class Manager extends User {
     public Manager(String userID, String fullName, String username, String password) {
         super(userID, fullName, "Manager", username, password);
-    }
-
-    // CRUD Operations for Cars
-    public void addCar(List<Car> cars, Car car) {
-        cars.add(car);
-        System.out.println("Car added successfully.");
-    }
-
-    public void removeCar(List<Car> cars, String carID) {
-        cars.removeIf(car -> car.getCarID().equals(carID));
-        System.out.println("Car removed successfully.");
-    }
-
-    // CRUD Operations for Auto Parts
-    public void addPart(List<AutoPart> parts, AutoPart part) {
-        parts.add(part);
-        System.out.println("Part added successfully.");
-    }
-
-    public void removePart(List<AutoPart> parts, String partID) {
-        parts.removeIf(part -> part.getPartID().equals(partID));
-        System.out.println("Part removed successfully.");
-    }
-
-    // CRUD Operations for Services
-    public void addService(List<Service> services, Service service) {
-        services.add(service);
-        System.out.println("Service added successfully.");
-    }
-
-    public void removeService(List<Service> services, String serviceID) {
-        services.removeIf(service -> service.getServiceID().equals(serviceID));
-        System.out.println("Service removed successfully.");
-    }
-
-    // CRUD Operations for Transactions
-    public void addTransaction(List<Transaction> transactions, Transaction transaction) {
-        transactions.add(transaction);
-        System.out.println("Transaction added successfully.");
-    }
-
-    public void removeTransaction(List<Transaction> transactions, String transactionID) {
-        transactions.removeIf(transaction -> transaction.getTransactionID().equals(transactionID));
-        System.out.println("Transaction removed successfully.");
-    }
-
-    // CRUD Operations for Users
-    public void removeUser(List<User> users, String userID) {
-        for (User user : users) {
-            if (user.getUserID().equals(userID)) {
-                user.setActive(false);
-                System.out.println("User deactivated successfully.");
-                return;
-            }
-        }
-        System.out.println("User not found.");
     }
 
     // View/Search Operations
@@ -168,11 +268,25 @@ class Manager extends User {
     }
 }
 
+class Salesperson extends User {
 
-class Employee extends User {
+    public Salesperson(String userID, String fullName, String username, String password) {
+        super(userID, fullName, "Salesperson", username, password);
+    }
 
-    public Employee(String userID, String fullName, String username, String password) {
-        super(userID, fullName, "Employee", username, password);
+    public void calculateRevenue(List<Transaction> transactions, String period) {
+
+    }
+
+    public void listCarsOrServices(List<Car> cars, List<Service> services, String period) {
+
+    }
+}
+
+class Mechanic extends User {
+
+    public Mechanic(String userID, String fullName, String username, String password) {
+        super(userID, fullName, "Mechanic", username, password);
     }
 
     public void calculateRevenue(List<Transaction> transactions, String period) {
@@ -185,12 +299,55 @@ class Employee extends User {
 }
 
 class Client extends User {
+    private String membership;
+    private double totalSpending;
+
     public Client(String userID, String fullName, String username, String password) {
         super(userID, fullName, "Client", username, password);
+        this.membership = "None"; // Default membership level
+        this.totalSpending = 0.0;
+    }
+
+    public String getMembership() {
+        return membership;
+    }
+
+    public double getTotalSpending() {
+        return totalSpending;
+    }
+
+    public void updateTotalSpending(double amount) {
+        this.totalSpending += amount;
+        updateMembership(); // Update membership based on the new total spending
+    }
+
+    public void updateMembership() {
+        if (totalSpending > 250_000_000) {
+            membership = "Platinum";
+        } else if (totalSpending > 100_000_000) {
+            membership = "Gold";
+        } else if (totalSpending > 30_000_000) {
+            membership = "Silver";
+        } else {
+            membership = "None";
+        }
+    }
+
+    public double getDiscountRate() {
+        switch (membership) {
+            case "Silver":
+                return 0.05;
+            case "Gold":
+                return 0.10;
+            case "Platinum":
+                return 0.15;
+            default:
+                return 0.0;
+        }
     }
 
     public void viewMembershipStatus() {
-        System.out.println("Your current membership status is: Silver");
+        System.out.println("Your membership is: " + membership);
     }
 
     public void viewServiceHistory(List<Service> services, String clientID) {
@@ -203,7 +360,23 @@ class Client extends User {
             }
         }
         if (!hasServices) {
-            System.out.println("No service history found for this client.");
+            System.out.println("No service history found for this client");
         }
+    }
+
+    // Methods to modify profile information
+    public void updateFullName(String newFullName) {
+        this.fullName = newFullName;
+        System.out.println("Full name updated successfully");
+    }
+
+    public void updateUsername(String newUsername) {
+        this.username = newUsername;
+        System.out.println("Username updated successfully");
+    }
+
+    public void updatePassword(String newPassword) {
+        this.password = newPassword;
+        System.out.println("Password updated successfully");
     }
 }

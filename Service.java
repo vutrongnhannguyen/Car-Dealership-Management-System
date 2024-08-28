@@ -10,18 +10,16 @@ public class Service {
     private List<AutoPart> replacedParts;
     private double cost;
     private String notes;
-    private boolean isActive;
 
     public Service(String serviceID, LocalDate serviceDate, String clientID, String mechanicID, String serviceType, List<AutoPart> replacedParts, double cost, String notes) {
-        this.serviceID = serviceID;
+        setServiceID(serviceID);
         this.serviceDate = serviceDate;
         this.clientID = clientID;
-        this.mechanicID = mechanicID;
+        setMechanicID(mechanicID);
         this.serviceType = serviceType;
         this.replacedParts = replacedParts;
         this.cost = cost;
         this.notes = notes;
-        this.isActive = true; // Default is active
     }
 
     public String getServiceID() {
@@ -29,7 +27,11 @@ public class Service {
     }
 
     public void setServiceID(String serviceID) {
-        this.serviceID = serviceID;
+        if (serviceID.matches("s-\\d+")) {
+            this.serviceID = serviceID;
+        } else {
+            throw new IllegalArgumentException("Invalid service ID format");
+        }
     }
 
     public LocalDate getServiceDate() {
@@ -53,7 +55,11 @@ public class Service {
     }
 
     public void setMechanicID(String mechanicID) {
-        this.mechanicID = mechanicID;
+        if (mechanicID.matches("u-\\d+")) {
+            this.mechanicID = mechanicID;
+        } else {
+            throw new IllegalArgumentException("Invalid mechanic ID format");
+        }
     }
 
     public String getServiceType() {
@@ -86,14 +92,6 @@ public class Service {
 
     public void setNotes(String notes) {
         this.notes = notes;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
     }
 
     public boolean isInPeriod(String period) {
