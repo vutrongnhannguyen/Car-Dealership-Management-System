@@ -106,6 +106,7 @@ public class User {
                 case "Salesperson", "Mechanic" -> {
                     System.out.println("3. Calculate Revenue");
                     System.out.println("4. List Cars or Services");
+                    System.out.println("5. Activity Histories");
                 }
                 case "Client" -> {
                     System.out.println("3. View Membership Status");
@@ -153,12 +154,21 @@ public class User {
                     break;
                 case 5:
                     if (getUserType().equals("Manager")) {
+                        // Manager adds a new part
                         PartManager.addPart(scanner, parts);
                     } else if (this instanceof Client client) {
+                        // Client updates their full name
                         System.out.print("Enter new full name: ");
                         String newFullName = scanner.nextLine();
                         client.updateFullName(newFullName);
-                        FileManager.writeUsers(users, "D:/programming1/asm3/users.csv"); // Save the updated user list to the CSV file
+                        // Save the updated user list to the CSV file
+                        FileManager.writeUsers(users, "D:/programming1/asm3/users.csv");
+                    } else if (this instanceof Salesperson salesperson) {
+                        // Salesperson views their transaction history
+                        salesperson.viewTransactionHistory(transactions, getUserID());
+                    } else if (this instanceof Mechanic mechanic) {
+                        // Mechanic views their service history
+                        mechanic.viewServiceHistory(services, getUserID());
                     }
                     break;
                 case 6:
@@ -225,14 +235,67 @@ class Manager extends User {
 
     // View/Search Operations
     public void viewEntities(List<Car> cars, List<AutoPart> parts, List<Service> services, List<Transaction> transactions) {
-        System.out.println("\n--- Cars ---");
-        cars.forEach(System.out::println);
-        System.out.println("\n--- Auto Parts ---");
-        parts.forEach(System.out::println);
-        System.out.println("\n--- Services ---");
-        services.forEach(System.out::println);
-        System.out.println("\n--- Transactions ---");
-        transactions.forEach(System.out::println);
+        Scanner scanner = new Scanner(System.in);
+        int choice = -1;
+
+        // Loop until the manager chooses to exit
+        while (choice != 0) {
+            System.out.println("\n--- Entities Menu ---");
+            System.out.println("1. View Cars");
+            System.out.println("2. View Auto Parts");
+            System.out.println("3. View Services");
+            System.out.println("4. View Transactions");
+            System.out.println("0. Exit");
+            System.out.print("Enter your choice: ");
+
+            choice = scanner.nextInt();
+            scanner.nextLine();  // Consume newline
+
+            switch (choice) {
+                case 1:
+                    System.out.println("\n--- Cars ---");
+                    if (cars.isEmpty()) {
+                        System.out.println("No cars available.");
+                    } else {
+                        cars.forEach(System.out::println);
+                    }
+                    break;
+
+                case 2:
+                    System.out.println("\n--- Auto Parts ---");
+                    if (parts.isEmpty()) {
+                        System.out.println("No auto parts available.");
+                    } else {
+                        parts.forEach(System.out::println);
+                    }
+                    break;
+
+                case 3:
+                    System.out.println("\n--- Services ---");
+                    if (services.isEmpty()) {
+                        System.out.println("No services available.");
+                    } else {
+                        services.forEach(System.out::println);
+                    }
+                    break;
+
+                case 4:
+                    System.out.println("\n--- Transactions ---");
+                    if (transactions.isEmpty()) {
+                        System.out.println("No transactions available.");
+                    } else {
+                        transactions.forEach(System.out::println);
+                    }
+                    break;
+
+                case 0:
+                    System.out.println("Exiting entity view.");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice. Please enter a number from 0 to 4.");
+            }
+        }
     }
 
     // Statistics Operations
@@ -281,6 +344,20 @@ class Salesperson extends User {
     public void listCarsOrServices(List<Car> cars, List<Service> services, String period) {
 
     }
+
+    public void viewTransactionHistory(List<Transaction> transactions, String salespersonID) {
+        System.out.println("\nTransaction History: ");
+        boolean hasTransactions = false;
+        for (Transaction transaction : transactions) {
+            if (transaction.getSalespersonID().equals(salespersonID)) {
+                System.out.println(transaction);
+                hasTransactions = true;
+            }
+        }
+        if (!hasTransactions) {
+            System.out.println("No transaction history found for this salesperson.");
+        }
+    }
 }
 
 class Mechanic extends User {
@@ -295,6 +372,20 @@ class Mechanic extends User {
 
     public void listCarsOrServices(List<Car> cars, List<Service> services, String period) {
 
+    }
+
+    public void viewServiceHistory(List<Service> services, String mechanicID) {
+        System.out.println("\nService History: ");
+        boolean hasServices = false;
+        for (Service service : services) {
+            if (service.getMechanicID().equals(mechanicID)) {
+                System.out.println(service);
+                hasServices = true;
+            }
+        }
+        if (!hasServices) {
+            System.out.println("No service history found for this mechanic.");
+        }
     }
 }
 

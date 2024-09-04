@@ -17,11 +17,11 @@ public class Main {
         WelcomeScreen.display();
 
         // Load data from CSV files
-        cars = FileManager.readCars("D:/programming1/asm3/cars.csv");
-        parts = FileManager.readParts("D:/programming1/asm3/parts.csv");
-        services = FileManager.readServices("D:/programming1/asm3/services.csv", parts);
-        transactions = FileManager.readTransactions("D:/programming1/asm3/transactions.csv", cars, parts);
-        users = FileManager.readUsers("D:/programming1/asm3/users.csv");
+        cars = FileManager.readCars("cars.csv");
+        parts = FileManager.readParts("parts.csv");
+        services = FileManager.readServices("services.csv", parts);
+        transactions = FileManager.readTransactions("transactions.csv", cars, parts);
+        users = FileManager.readUsers("users.csv");
 
         Scanner scanner = new Scanner(System.in);
 
@@ -41,11 +41,11 @@ public class Main {
                 loggedInUser.displayMenu(scanner, cars, parts, services, transactions, users);
 
                 // Save data to CSV files only if the logged in
-                FileManager.writeCars(cars, "D:/programming1/asm3/cars.csv");
-                FileManager.writeParts(parts, "D:/programming1/asm3/parts.csv");
-                FileManager.writeServices(services, "D:/programming1/asm3/services.csv");
-                FileManager.writeTransactions(transactions, "D:/programming1/asm3/transactions.csv");
-                FileManager.writeUsers(users, "D:/programming1/asm3/users.csv");
+                FileManager.writeCars(cars, "cars.csv");
+                FileManager.writeParts(parts, "parts.csv");
+                FileManager.writeServices(services, "services.csv");
+                FileManager.writeTransactions(transactions, "transactions.csv");
+                FileManager.writeUsers(users, "users.csv");
             }
         } else {
             System.out.println("Invalid username or password");
