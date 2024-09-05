@@ -1,3 +1,5 @@
+package Screen;
+
 public class WelcomeScreen {
     public static void display() {
         System.out.println("**********************************");

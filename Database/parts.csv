@@ -16,7 +16,7 @@ p-015,Tire,Michelin,T-4555,New,36 months,2500000.0,High grip tires
 p-016,Windshield,Winglass,WS-2342,New,12 months,3000000.0,Clear and strong windshield
 p-017,Clutch Plate,Sachs,CP-6789,New,18 months,1800000.0,Heavy-duty clutch
 p-018,Oil Filter,Mann,OFL-7800,New,12 months,300000.0,High filtration efficiency
-p-019,Car Battery,Amaron,CB-5674,New,18 months,900000.0,Maintenance-free battery
+p-019,Car.Car Battery,Amaron,CB-5674,New,18 months,900000.0,Maintenance-free battery
 p-020,Steering Wheel,Gripwell,SW-9088,New,24 months,1100000.0,Comfortable grip
 p-021,Timing Belt,Gates,TB-5501,New,36 months,750000.0,Durable timing belt
 p-022,Door Handle,Dorman,DH-1122,New,12 months,350000.0,Sleek design

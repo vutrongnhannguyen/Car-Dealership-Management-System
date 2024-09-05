@@ -1,0 +1,19 @@
+u-001,Chung Chi Vi,User.Manager,chivi,chivi2002,true
+u-002,Nguyen Vu Trong Nhan,User.Salesperson,tonynguyen,tonynguyen2000,true
+u-003,Chris Evans,User.Salesperson,chrisevans,chrisevans123,true
+u-004,Clark Kent,User.Salesperson,superman,superman123,true
+u-005,Fedor Gorst,User.Salesperson,fedorgorst,fedorgorst123,true
+u-006,Henry Cavill,User.Mechanic,henrycavill,henrycavill123,true
+u-007,Victor Von Doom,User.Mechanic,dooom,doom123,true
+u-008,Monkey D. Luffy,User.Mechanic,luffy,luffy123,true
+u-009,Uzumaki Naruto,User.Mechanic,naruto,naruto123,true
+u-010,Duong Hoang Anh Khoa,User.Client,anhkhoa,anhkhoa2001,true,None,1.8391E7
+u-011,Dead Pool,User.Client,deadpool,deadpool123,true,Platinum,8.424175E8
+u-012,Wolverine,User.Client,wolverine,wolverine123,true,Platinum,7.9769E8
+u-013,Tony Stark,User.Client,ironman,ironman123,true,Platinum,9.19E8
+u-014,Bruce Wayne,User.Client,batman,batman123,true,Platinum,1.22603E9
+u-015,Peter Parker,User.Client,spiderman,spiderman123,true,Platinum,1.14791E9
+u-016,Shane Van Boening,User.Client,shane,svb123,true,Platinum,1.24415E9
+u-017,Joshua Filler,User.Salesperson,joshuafiller,joshuafiller123,true
+u-018,Sergio Ramos,User.Mechanic,sergioramos,sergioramos123,false
+u-019,Lionel Messi,User.Client,lionelmessi,lionelmessi123,false,None,0.0

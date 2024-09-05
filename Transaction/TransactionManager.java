@@ -1,16 +1,24 @@
+package Transaction;
+
+import AutoPart.AutoPart;
+import Car.Car;
+import User.Client;
+import User.Salesperson;
+import User.User;
+
 import java.time.LocalDate;
 import java.util.*;
 
 public class TransactionManager {
     public static void addTransaction(Scanner scanner, List<Transaction> transactions, List<Car> cars, List<AutoPart> parts, List<User> users) {
-        System.out.print("Enter transaction details (Transaction ID, Date (yyyy-mm-dd), Client ID, Salesperson ID, Total Amount, Notes): ");
+        System.out.print("Enter transaction details (Transaction.Transaction ID, Date (yyyy-mm-dd), User.Client ID, User.Salesperson ID, Total Amount, Notes): ");
         String transactionDetails = scanner.nextLine();
         String[] transactionData = transactionDetails.split(", ");
 
-        // Check if the Transaction ID already exists
+        // Check if the Transaction.Transaction ID already exists
         for (Transaction transaction : transactions) {
             if (transaction.getTransactionID().equals(transactionData[0])) {
-                System.out.println("Transaction ID " + transactionData[0] + " already exists");
+                System.out.println("Transaction.Transaction ID " + transactionData[0] + " already exists");
                 return;
             }
         }
@@ -37,7 +45,7 @@ public class TransactionManager {
                     }
                 }
                 if (!carFound) {
-                    System.out.println("Car ID " + itemID + " does not exist.");
+                    System.out.println("Car.Car ID " + itemID + " does not exist.");
                     invalidItemFound = true;
                 }
             } else if (itemID.startsWith("p-")) {
@@ -72,12 +80,12 @@ public class TransactionManager {
                 .orElse(null);
 
         if (client == null) {
-            System.out.println("Client not found.");
+            System.out.println("User.Client not found.");
             return;
         }
 
         if (!client.isActive()) {
-            System.out.println("Client is currently set to inactive and cannot make purchases.");
+            System.out.println("User.Client is currently set to inactive and cannot make purchases.");
             return;
         }
 
@@ -88,12 +96,12 @@ public class TransactionManager {
                 .orElse(null);
 
         if (salesperson == null) {
-            System.out.println("There is no Salesperson with this user ID");
+            System.out.println("There is no User.Salesperson with this user ID");
             return;
         }
 
         if (!salesperson.isActive()) {
-            System.out.println("Salesperson is currently set to inactive");
+            System.out.println("User.Salesperson is currently set to inactive");
             return;
         }
 
@@ -126,7 +134,7 @@ public class TransactionManager {
 
         System.out.println("Applied discount: " + discount);
         System.out.println("Total amount after discount: " + totalAmount);
-        System.out.println("Transaction added successfully");
+        System.out.println("Transaction.Transaction added successfully");
 
         // Update car status
         for (Object item : purchasedItems) {
@@ -140,10 +148,10 @@ public class TransactionManager {
     }
 
     public static void removeTransaction(Scanner scanner, List<Transaction> transactions) {
-        System.out.print("Enter Transaction ID to remove: ");
+        System.out.print("Enter Transaction.Transaction ID to remove: ");
         String transactionID = scanner.nextLine();
 
-        // Check if the Transaction ID exists
+        // Check if the Transaction.Transaction ID exists
         boolean transactionExists = false;
         for (Transaction transaction : transactions) {
             if (transaction.getTransactionID().equals(transactionID)) {
@@ -153,12 +161,12 @@ public class TransactionManager {
         }
 
         if (!transactionExists) {
-            System.out.println("Transaction ID " + transactionID + " does not exist");
-            return; // Stop the process if the Transaction ID does not exist
+            System.out.println("Transaction.Transaction ID " + transactionID + " does not exist");
+            return; // Stop the process if the Transaction.Transaction ID does not exist
         }
 
         transactions.removeIf(transaction -> transaction.getTransactionID().equals(transactionID));
 
-        System.out.println("Transaction with ID " + transactionID + " has been successfully removed");
+        System.out.println("Transaction.Transaction with ID " + transactionID + " has been successfully removed");
     }
 }

@@ -1,3 +1,7 @@
+package Service;
+
+import AutoPart.AutoPart;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -100,6 +104,6 @@ public class Service {
 
     @Override
     public String toString() {
-        return "Service ID: " + serviceID + ", Date: " + serviceDate + ", Type: " + serviceType;
+        return "Service.Service ID: " + serviceID + ", Date: " + serviceDate + ", Type: " + serviceType;
     }
 }

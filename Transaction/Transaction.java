@@ -1,3 +1,5 @@
+package Transaction;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -100,6 +102,6 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return String.format("Transaction ID: %s, Date: %s, Total: %.0f", transactionID, transactionDate, totalAmount);
+        return String.format("Transaction.Transaction ID: %s, Date: %s, Total: %.0f", transactionID, transactionDate, totalAmount);
     }
 }

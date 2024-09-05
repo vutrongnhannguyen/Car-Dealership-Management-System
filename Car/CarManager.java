@@ -1,15 +1,17 @@
+package Car;
+
 import java.util.*;
 
 public class CarManager {
     public static void addCar(Scanner scanner, List<Car> cars) {
-        System.out.print("Enter car details (Car ID, Make, Model, Year, Mileage, Color, Status, Price, Notes): ");
+        System.out.print("Enter car details (Car.Car ID, Make, Model, Year, Mileage, Color, Status, Price, Notes): ");
         String carDetails = scanner.nextLine();
         String[] carData = carDetails.split(", ");
 
-        // Check if the Car ID already exists
+        // Check if the Car.Car ID already exists
         for (Car car : cars) {
             if (car.getCarID().equals(carData[0])) {
-                System.out.println("Error: Car ID " + carData[0] + " already exists");
+                System.out.println("Error: Car.Car ID " + carData[0] + " already exists");
                 return;
             }
         }
@@ -37,14 +39,14 @@ public class CarManager {
         // Sort the cars by their ID
         cars.sort(Comparator.comparing(Car::getCarID));
 
-        System.out.println("Car added successfully");
+        System.out.println("Car.Car added successfully");
     }
 
     public static void removeCar(Scanner scanner, List<Car> cars) {
-        System.out.print("Enter Car ID to remove: ");
+        System.out.print("Enter Car.Car ID to remove: ");
         String carID = scanner.nextLine();
 
-        // Check if the Car ID exists
+        // Check if the Car.Car ID exists
         boolean carExists = false;
         for (Car car : cars) {
             if (car.getCarID().equals(carID)) {
@@ -54,11 +56,11 @@ public class CarManager {
         }
 
         if (!carExists) {
-            System.out.println("Car ID " + carID + " does not exist");
+            System.out.println("Car.Car ID " + carID + " does not exist");
             return;
         }
 
         cars.removeIf(car -> car.getCarID().equals(carID));
-        System.out.println("Car removed successfully");
+        System.out.println("Car.Car removed successfully");
     }
 }

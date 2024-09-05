@@ -1,16 +1,23 @@
+package Service;
+
+import AutoPart.AutoPart;
+import User.Client;
+import User.Mechanic;
+import User.User;
+
 import java.time.LocalDate;
 import java.util.*;
 
 public class ServiceManager {
     public static void addService(Scanner scanner, List<Service> services, List<AutoPart> parts, List<User> users) {
-        System.out.print("Enter service details (ID, Date (yyyy-mm-dd), Client ID, Mechanic ID, Service Type, Cost, Notes): ");
+        System.out.print("Enter service details (ID, Date (yyyy-mm-dd), User.Client ID, User.Mechanic ID, Service.Service Type, Cost, Notes): ");
         String serviceDetails = scanner.nextLine();
         String[] serviceData = serviceDetails.split(", ");
 
-        // Check if the Service ID already exists
+        // Check if the Service.Service ID already exists
         for (Service service : services) {
             if (service.getServiceID().equals(serviceData[0])) {
-                System.out.println("Service ID " + serviceData[0] + " already exists");
+                System.out.println("Service.Service ID " + serviceData[0] + " already exists");
                 return;
             }
         }
@@ -50,12 +57,12 @@ public class ServiceManager {
                 .orElse(null);
 
         if (client == null) {
-            System.out.println("Client not found");
+            System.out.println("User.Client not found");
             return;
         }
 
         if (!client.isActive()) {
-            System.out.println("Client is currently set to inactive and can not request any services");
+            System.out.println("User.Client is currently set to inactive and can not request any services");
             return;
         }
 
@@ -66,12 +73,12 @@ public class ServiceManager {
                 .orElse(null);
 
         if (mechanic == null) {
-            System.out.println("There is no Mechanic has this user ID");
+            System.out.println("There is no User.Mechanic has this user ID");
             return;
         }
 
         if (!mechanic.isActive()) {
-            System.out.println("Mechanic is currently set to inactive");
+            System.out.println("User.Mechanic is currently set to inactive");
             return;
         }
 
@@ -102,14 +109,14 @@ public class ServiceManager {
         services.sort(Comparator.comparing(Service::getServiceID));
 
         System.out.println("Applied discount: " + discount);
-        System.out.println("Service added successfully");
+        System.out.println("Service.Service added successfully");
     }
 
     public static void removeService(Scanner scanner, List<Service> services) {
-        System.out.print("Enter Service ID to remove: ");
+        System.out.print("Enter Service.Service ID to remove: ");
         String serviceID = scanner.nextLine();
 
-        // Check if the Service ID exists
+        // Check if the Service.Service ID exists
         boolean serviceExists = false;
         for (Service service : services) {
             if (service.getServiceID().equals(serviceID)) {
@@ -119,11 +126,11 @@ public class ServiceManager {
         }
 
         if (!serviceExists) {
-            System.out.println("Service ID " + serviceID + " does not exist");
+            System.out.println("Service.Service ID " + serviceID + " does not exist");
             return;
         }
 
         services.removeIf(service -> service.getServiceID().equals(serviceID));
-        System.out.println("Service removed successfully");
+        System.out.println("Service.Service removed successfully");
     }
 }

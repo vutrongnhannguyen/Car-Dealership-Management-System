@@ -1,3 +1,15 @@
+package FileHandler;
+
+import AutoPart.AutoPart;
+import Car.Car;
+import Service.Service;
+import Transaction.Transaction;
+import User.User;
+import User.Manager;
+import User.Salesperson;
+import User.Client;
+import User.Mechanic;
+
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -142,16 +154,16 @@ public class FileManager {
                 String[] data = line.split(",");
                 User user;
                 switch (data[2]) { // userType
-                    case "Manager":
+                    case "User.Manager":
                         user = new Manager(data[0], data[1], data[3], data[4]);
                         break;
-                    case "Salesperson":
+                    case "User.Salesperson":
                         user = new Salesperson(data[0], data[1], data[3], data[4]);
                         break;
-                    case "Mechanic":
+                    case "User.Mechanic":
                         user = new Mechanic(data[0], data[1], data[3], data[4]);
                         break;
-                    case "Client":
+                    case "User.Client":
                         user = new Client(data[0], data[1], data[3], data[4]);
                         ((Client) user).updateTotalSpending(Double.parseDouble(data[7])); // Load total spent
                         ((Client) user).updateMembership(); // Update membership based on total spent
