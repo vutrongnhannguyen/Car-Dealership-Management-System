@@ -100,6 +100,6 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return "Transaction ID: " + transactionID + ", Date: " + transactionDate + ", Total: " + totalAmount;
+        return String.format("Transaction ID: %s, Date: %s, Total: %.0f", transactionID, transactionDate, totalAmount);
     }
 }

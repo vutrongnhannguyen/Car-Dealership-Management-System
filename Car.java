@@ -11,7 +11,6 @@ public class Car {
     private double price;
     private List<String> serviceHistory;
     private String notes;
-
     public Car(String carID, String make, String model, int year, int mileage, String color, String status, double price, List<String> serviceHistory, String notes) {
         setCarID(carID);
         this.make = make;
@@ -23,6 +22,7 @@ public class Car {
         this.price = price;
         this.serviceHistory = serviceHistory;
         this.notes = notes;
+
     }
 
     public String getCarID() {
@@ -36,6 +36,8 @@ public class Car {
             throw new IllegalArgumentException("Invalid car ID format.");
         }
     }
+
+
 
     public String getMake() {
         return make;
