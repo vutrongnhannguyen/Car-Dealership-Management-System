@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -106,7 +107,6 @@ public class User {
                 case "Salesperson", "Mechanic" -> {
                     System.out.println("3. Calculate Revenue");
                     System.out.println("4. List Cars or Services");
-                    System.out.println("5. Activity Histories");
                 }
                 case "Client" -> {
                     System.out.println("3. View Membership Status");
@@ -132,7 +132,7 @@ public class User {
                     break;
                 case 3:
                     switch (getUserType()) {
-                        case "Manager" -> CarManager.addCar(scanner, cars);
+                        case "Manager" -> AutoPart.CarManager.addCar(scanner, cars);
                         case "Salesperson", "Mechanic" -> {
                             System.out.print("Enter day/week/month to calculate revenue: ");
                             String period = scanner.nextLine();
@@ -143,7 +143,7 @@ public class User {
                     break;
                 case 4:
                     switch (getUserType()) {
-                        case "Manager" -> CarManager.removeCar(scanner, cars);
+                        case "Manager" -> AutoPart.CarManager.removeCar(scanner, cars);
                         case "Salesperson", "Mechanic" -> {
                             System.out.print("Enter day/week/month to list cars or services: ");
                             String period = scanner.nextLine();
@@ -154,21 +154,12 @@ public class User {
                     break;
                 case 5:
                     if (getUserType().equals("Manager")) {
-                        // Manager adds a new part
                         PartManager.addPart(scanner, parts);
                     } else if (this instanceof Client client) {
-                        // Client updates their full name
                         System.out.print("Enter new full name: ");
                         String newFullName = scanner.nextLine();
                         client.updateFullName(newFullName);
-                        // Save the updated user list to the CSV file
-                        FileManager.writeUsers(users, "D:/programming1/asm3/users.csv");
-                    } else if (this instanceof Salesperson salesperson) {
-                        // Salesperson views their transaction history
-                        salesperson.viewTransactionHistory(transactions, getUserID());
-                    } else if (this instanceof Mechanic mechanic) {
-                        // Mechanic views their service history
-                        mechanic.viewServiceHistory(services, getUserID());
+                        FileManager.writeUsers(users, "users.csv"); // Save the updated user list to the CSV file
                     }
                     break;
                 case 6:
@@ -178,7 +169,7 @@ public class User {
                         System.out.print("Enter new username: ");
                         String newUsername = scanner.nextLine();
                         client.updateUsername(newUsername);
-                        FileManager.writeUsers(users, "D:/programming1/asm3/users.csv"); // Save the updated user list to the CSV file
+                        FileManager.writeUsers(users, "users.csv"); // Save the updated user list to the CSV file
                     }
                     break;
                 case 7:
@@ -188,7 +179,7 @@ public class User {
                         System.out.print("Enter new password: ");
                         String newPassword = scanner.nextLine();
                         client.updatePassword(newPassword);
-                        FileManager.writeUsers(users, "D:/programming1/asm3/users.csv"); // Save the updated user list to the CSV file
+                        FileManager.writeUsers(users, "users.csv"); // Save the updated user list to the CSV file
                     }
                     break;
                 case 8:
@@ -216,6 +207,95 @@ public class User {
                         ((Manager) this).viewEntities(cars, parts, services, transactions);
                     }
                     break;
+                case 13:
+                    if (getUserType().equals("Manager")) {
+                       System.out.print("Enter the month: ");
+                       String month = scanner.nextLine();
+                       System.out.print("Enter the year: ");
+                       String year = scanner.nextLine();
+                        ((Manager) this).calculateCarsSoldInMonth(transactions, month, year);
+                    }
+                    break;
+                case 14:
+                    if (getUserType().equals("Manager") || getUserType().equals("Salesperson") || getUserType().equals("Mechanic")) {
+                        System.out.print("Enter the period (day/week/month): ");
+                        String period = scanner.nextLine();
+                        System.out.print("Enter the day: ");
+                        String day = scanner.nextLine();
+                        System.out.print("Enter the month: ");
+                        String month = scanner.nextLine();
+                        System.out.print("Enter the year: ");
+                        String year = scanner.nextLine();
+                        ((Manager) this).calculateRevenue(transactions,period, day, month, year);
+
+                    }
+                    break;
+                case 15:
+                    if (getUserType().equals("Manager")) {
+                        System.out.print("Enter the mechanic ID: ");
+                        String mechanicID = scanner.nextLine();
+                        ((Manager) this).calculateRevenueForMechanic(services, mechanicID);
+                    }
+                    break;
+                case 16:
+                    if (getUserType().equals("Manager")) {
+                        System.out.print("Enter the salesperson ID: ");
+                        String salespersonID = scanner.nextLine();
+                        ((Manager) this).calculateRevenueForSalesperson(transactions, salespersonID);
+                    }
+                    break;
+                case 17:
+                    if (getUserType().equals("Manager")) {
+                        System.out.print("Enter the period (day/week/month): ");
+                        String period = scanner.nextLine();
+                        System.out.print("Enter the day: ");
+                        String day = scanner.nextLine();
+                        System.out.print("Enter the month: ");
+                        String month = scanner.nextLine();
+                        System.out.print("Enter the year: ");
+                        String year = scanner.nextLine();
+                        ((Manager) this).listCarsSold(transactions,period, day, month, year);
+                    }
+                    break;
+                case 18:
+                    if (getUserType().equals("Manager")) {
+                        System.out.print("Enter the period (day/week/month): ");
+                        String period = scanner.nextLine();
+                        System.out.print("Enter the day: ");
+                        String day = scanner.nextLine();
+                        System.out.print("Enter the month: ");
+                        String month = scanner.nextLine();
+                        System.out.print("Enter the year: ");
+                        String year = scanner.nextLine();
+                        ((Manager) this).listTransactions(transactions,period, day, month, year);
+                    }
+                    break;
+                case 19:
+                    if (getUserType().equals("Manager")) {
+                        System.out.print("Enter the period (day/week/month): ");
+                        String period = scanner.nextLine();
+                        System.out.print("Enter the day: ");
+                        String day = scanner.nextLine();
+                        System.out.print("Enter the month: ");
+                        String month = scanner.nextLine();
+                        System.out.print("Enter the year: ");
+                        String year = scanner.nextLine();
+                        ((Manager) this).listServices(services,period, day, month, year);
+                    }
+                    break;
+                case 20:
+                    if (getUserType().equals("Manager")) {
+                        System.out.print("Enter the period (day/week/month): ");
+                        String period = scanner.nextLine();
+                        System.out.print("Enter the day: ");
+                        String day = scanner.nextLine();
+                        System.out.print("Enter the month: ");
+                        String month = scanner.nextLine();
+                        System.out.print("Enter the year: ");
+                        String year = scanner.nextLine();
+                        ((Manager) this).listAutoPartsSold(transactions,period, day, month, year);
+                    }
+                    break;
                 default:
                     System.out.println("We don't have that option");
             }
@@ -235,99 +315,273 @@ class Manager extends User {
 
     // View/Search Operations
     public void viewEntities(List<Car> cars, List<AutoPart> parts, List<Service> services, List<Transaction> transactions) {
-        Scanner scanner = new Scanner(System.in);
-        int choice = -1;
+        System.out.println("\n--- Cars ---");
+        cars.forEach(System.out::println);
+        System.out.println("\n--- Auto Parts ---");
+        parts.forEach(System.out::println);
+        System.out.println("\n--- Services ---");
+        services.forEach(System.out::println);
+        System.out.println("\n--- Transactions ---");
+        transactions.forEach(System.out::println);
+    }
 
-        // Loop until the manager chooses to exit
-        while (choice != 0) {
-            System.out.println("\n--- Entities Menu ---");
-            System.out.println("1. View Cars");
-            System.out.println("2. View Auto Parts");
-            System.out.println("3. View Services");
-            System.out.println("4. View Transactions");
-            System.out.println("0. Exit");
-            System.out.print("Enter your choice: ");
+    public int calculateCarInOneTransaction(List<Object> purchasedItems){
+        int count = 0;
 
-            choice = scanner.nextInt();
-            scanner.nextLine();  // Consume newline
+        for (Object item : purchasedItems) {
+            if (item instanceof Car) {
+                count++;
+            }
+        }
+        return count;
+    }
 
-            switch (choice) {
-                case 1:
-                    System.out.println("\n--- Cars ---");
-                    if (cars.isEmpty()) {
-                        System.out.println("No cars available.");
-                    } else {
-                        cars.forEach(System.out::println);
+    // Statistics Operations
+    public void calculateCarsSoldInMonth(List<Transaction> transactions, String month, String year) {
+        int numberOfCar = 0;
+
+        // Convert month and year strings to integers
+        int monthInt = Integer.parseInt(month);
+        int yearInt = Integer.parseInt(year);
+
+        // Iterate through the transactions and calculate the number of cars sold
+        for (Transaction transaction : transactions) {
+            if (transaction.getTransactionDate().getMonthValue() == monthInt && transaction.getTransactionDate().getYear() == yearInt) {
+                numberOfCar += calculateCarInOneTransaction(transaction.getPurchasedItems());
+            }
+        }
+
+        System.out.println("Number of cars sold in " + month + "-" + year + ": " + numberOfCar);
+    }
+
+    public void calculateRevenue(List<Transaction> transactions, String period, String month, String day, String year) {
+        double totalRevenue = 0;
+        int monthInt = Integer.parseInt(month);
+        int yearInt = Integer.parseInt(year);
+        int dayInt = Integer.parseInt(day);
+        LocalDate startDate = LocalDate.of(yearInt, dayInt, monthInt);
+        // Loop through all transactions to calculate the revenue
+
+        for (Transaction transaction : transactions) {
+            LocalDate transactionDate = transaction.getTransactionDate();
+            switch (period.toLowerCase()) {
+                case "day":
+                    if (transactionDate.isEqual(startDate)) {
+                        totalRevenue += transaction.getTotalAmount();
                     }
                     break;
 
-                case 2:
-                    System.out.println("\n--- Auto Parts ---");
-                    if (parts.isEmpty()) {
-                        System.out.println("No auto parts available.");
-                    } else {
-                        parts.forEach(System.out::println);
+                case "week":
+                    LocalDate endOfWeek = startDate.plusDays(6); // Define the week as 7 days
+                    if ((transactionDate.isEqual(startDate) || transactionDate.isAfter(startDate)) &&
+                            (transactionDate.isEqual(endOfWeek) || transactionDate.isBefore(endOfWeek))) {
+                        totalRevenue += transaction.getTotalAmount();
                     }
                     break;
 
-                case 3:
-                    System.out.println("\n--- Services ---");
-                    if (services.isEmpty()) {
-                        System.out.println("No services available.");
-                    } else {
-                        services.forEach(System.out::println);
+                case "month":
+                    if (transactionDate.getYear() == startDate.getYear() &&
+                            transactionDate.getMonthValue() == startDate.getMonthValue()) {
+                        totalRevenue += transaction.getTotalAmount();
                     }
-                    break;
-
-                case 4:
-                    System.out.println("\n--- Transactions ---");
-                    if (transactions.isEmpty()) {
-                        System.out.println("No transactions available.");
-                    } else {
-                        transactions.forEach(System.out::println);
-                    }
-                    break;
-
-                case 0:
-                    System.out.println("Exiting entity view.");
                     break;
 
                 default:
-                    System.out.println("Invalid choice. Please enter a number from 0 to 4.");
+                    throw new IllegalArgumentException("Invalid period type. Use 'day', 'week', or 'month'.");
+            }
+        }
+        String revenueFormatted = String.format("%.0f", totalRevenue);
+        System.out.println("Total revenue in a "+ period+ " of "+ day+ ", "+ month + ", "+ year+ " is: "+ revenueFormatted);
+    }
+
+    public void calculateRevenueForMechanic(List<Service> services, String mechanicID) {
+        double revenue = 0;
+        for(Service service : services) {
+            if(service.getMechanicID().equals(mechanicID)) {
+                revenue += service.getCost();
+            }
+        }
+        String revenueFormatted = String.format("%.0f", revenue);
+        System.out.print("Revenue for "+mechanicID+" is: " + revenueFormatted);
+    }
+
+    public void calculateRevenueForSalesperson(List<Transaction> transactions, String salespersonID) {
+        double revenue = 0;
+        for (Transaction transaction : transactions) {
+            if(transaction.getSalespersonID().equals(salespersonID)) {
+                revenue += transaction.getTotalAmount();
+            }
+        }
+        String revenueFormatted = String.format("%.0f", revenue);
+        System.out.print("Revenue for "+salespersonID+" is: " + revenueFormatted);
+    }
+
+    public void printCar(List<Object> purchasedItems){
+        for (Object item : purchasedItems) {
+            if (item instanceof Car) {
+                System.out.println(item);
             }
         }
     }
 
-    // Statistics Operations
-    public void calculateCarsSoldInMonth(List<Car> cars, int month, int year) {
+    public void listCarsSold(List<Transaction> transactions, String period, String month, String day, String year) {
+        int monthInt = Integer.parseInt(month);
+        int yearInt = Integer.parseInt(year);
+        int dayInt = Integer.parseInt(day);
+        LocalDate startDate = LocalDate.of(yearInt, dayInt, monthInt);
+        // Loop through all transactions to calculate the revenue
+        System.out.println("\n--- List Cars Sold ---");
+        for (Transaction transaction : transactions) {
+            LocalDate transactionDate = transaction.getTransactionDate();
+            switch (period.toLowerCase()) {
+                case "day":
+                    if (transactionDate.isEqual(startDate)) {
+                        printCar(transaction.getPurchasedItems());
+                    }
+                    break;
+
+                case "week":
+                    LocalDate endOfWeek = startDate.plusDays(6); // Define the week as 7 days
+                    if ((transactionDate.isEqual(startDate) || transactionDate.isAfter(startDate)) &&
+                            (transactionDate.isEqual(endOfWeek) || transactionDate.isBefore(endOfWeek))) {
+                        printCar(transaction.getPurchasedItems());
+                    }
+                    break;
+
+                case "month":
+                    if (transactionDate.getYear() == startDate.getYear() &&
+                            transactionDate.getMonthValue() == startDate.getMonthValue()) {
+                        printCar(transaction.getPurchasedItems());
+                    }
+                    break;
+
+                default:
+                    throw new IllegalArgumentException("Invalid period type. Use 'day', 'week', or 'month'.");
+            }
+        }
+        System.out.println("----------------------");
     }
 
-    public void calculateRevenue(List<Transaction> transactions, String period) {
+    public void listTransactions(List<Transaction> transactions, String period, String month, String day, String year) {
+        int monthInt = Integer.parseInt(month);
+        int yearInt = Integer.parseInt(year);
+        int dayInt = Integer.parseInt(day);
+        LocalDate startDate = LocalDate.of(yearInt, dayInt, monthInt);
+        // Loop through all transactions to calculate the revenue
+        System.out.println("\n--- List Of Transaction ---");
+        for (Transaction transaction : transactions) {
+            LocalDate transactionDate = transaction.getTransactionDate();
+            switch (period.toLowerCase()) {
+                case "day":
+                    if (transactionDate.isEqual(startDate)) {
+                        System.out.println(transaction);
+                    }
+                    break;
 
+                case "week":
+                    LocalDate endOfWeek = startDate.plusDays(6); // Define the week as 7 days
+                    if ((transactionDate.isEqual(startDate) || transactionDate.isAfter(startDate)) &&
+                            (transactionDate.isEqual(endOfWeek) || transactionDate.isBefore(endOfWeek))) {
+                        System.out.println(transaction);
+                    }
+                    break;
+
+                case "month":
+                    if (transactionDate.getYear() == startDate.getYear() &&
+                            transactionDate.getMonthValue() == startDate.getMonthValue()) {
+                        System.out.println(transaction);
+                    }
+                    break;
+
+                default:
+                    throw new IllegalArgumentException("Invalid period type. Use 'day', 'week', or 'month'.");
+            }
+        }
+        System.out.println("--------------------------");
     }
 
-    public void calculateRevenueForMechanic(List<Service> services, String mechanicID, String period) {
+    public void listServices(List<Service> services, String period, String month, String day, String year) {
+        int monthInt = Integer.parseInt(month);
+        int yearInt = Integer.parseInt(year);
+        int dayInt = Integer.parseInt(day);
+        LocalDate startDate = LocalDate.of(yearInt, dayInt, monthInt);
+        // Loop through all transactions to calculate the revenue
+        System.out.println("\n--- List Of Services ---");
+        for (Service service : services) {
+            LocalDate serviceDate = service.getServiceDate();
+            switch (period.toLowerCase()) {
+                case "day":
+                    if (serviceDate.isEqual(startDate)) {
+                        System.out.println(service);
+                    }
+                    break;
 
+                case "week":
+                    LocalDate endOfWeek = startDate.plusDays(6); // Define the week as 7 days
+                    if ((serviceDate.isEqual(startDate) || serviceDate.isAfter(startDate)) &&
+                            (serviceDate.isEqual(endOfWeek) || serviceDate.isBefore(endOfWeek))) {
+                        System.out.println(service);
+                    }
+                    break;
+
+                case "month":
+                    if (serviceDate.getYear() == startDate.getYear() &&
+                            serviceDate.getMonthValue() == startDate.getMonthValue()) {
+                        System.out.println(service);
+                    }
+                    break;
+
+                default:
+                    throw new IllegalArgumentException("Invalid period type. Use 'day', 'week', or 'month'.");
+            }
+        }
+        System.out.println("-----------------------");
     }
 
-    public void calculateRevenueForSalesperson(List<Transaction> transactions, String salespersonID, String period) {
-
+    public void printAutoPart(List<Object> purchasedItems){
+        for (Object item : purchasedItems) {
+            if (item instanceof AutoPart) {
+                System.out.println(item);
+            }
+        }
     }
 
-    public void listCarsSold(List<Car> cars, String period) {
+    public void listAutoPartsSold(List<Transaction> transactions, String period, String month, String day, String year) {
+        int monthInt = Integer.parseInt(month);
+        int yearInt = Integer.parseInt(year);
+        int dayInt = Integer.parseInt(day);
+        LocalDate startDate = LocalDate.of(yearInt, dayInt, monthInt);
+        // Loop through all transactions to calculate the revenue
+        System.out.println("\n--- List Auto Parts Sold ---");
+        for (Transaction transaction : transactions) {
+            LocalDate transactionDate = transaction.getTransactionDate();
+            switch (period.toLowerCase()) {
+                case "day":
+                    if (transactionDate.isEqual(startDate)) {
+                        printAutoPart(transaction.getPurchasedItems());
+                    }
+                    break;
 
-    }
+                case "week":
+                    LocalDate endOfWeek = startDate.plusDays(6); // Define the week as 7 days
+                    if ((transactionDate.isEqual(startDate) || transactionDate.isAfter(startDate)) &&
+                            (transactionDate.isEqual(endOfWeek) || transactionDate.isBefore(endOfWeek))) {
+                        printAutoPart(transaction.getPurchasedItems());
+                    }
+                    break;
 
-    public void listTransactions(List<Transaction> transactions, String period) {
+                case "month":
+                    if (transactionDate.getYear() == startDate.getYear() &&
+                            transactionDate.getMonthValue() == startDate.getMonthValue()) {
+                        printAutoPart(transaction.getPurchasedItems());
+                    }
+                    break;
 
-    }
-
-    public void listServices(List<Service> services, String period) {
-
-    }
-
-    public void listAutoPartsSold(List<Transaction> transactions, String period) {
-
+                default:
+                    throw new IllegalArgumentException("Invalid period type. Use 'day', 'week', or 'month'.");
+            }
+        }
+        System.out.println("----------------------------");
     }
 }
 
@@ -344,20 +598,6 @@ class Salesperson extends User {
     public void listCarsOrServices(List<Car> cars, List<Service> services, String period) {
 
     }
-
-    public void viewTransactionHistory(List<Transaction> transactions, String salespersonID) {
-        System.out.println("\nTransaction History: ");
-        boolean hasTransactions = false;
-        for (Transaction transaction : transactions) {
-            if (transaction.getSalespersonID().equals(salespersonID)) {
-                System.out.println(transaction);
-                hasTransactions = true;
-            }
-        }
-        if (!hasTransactions) {
-            System.out.println("No transaction history found for this salesperson.");
-        }
-    }
 }
 
 class Mechanic extends User {
@@ -366,26 +606,48 @@ class Mechanic extends User {
         super(userID, fullName, "Mechanic", username, password);
     }
 
-    public void calculateRevenue(List<Transaction> transactions, String period) {
+    public void calculateRevenue(List<Transaction> transactions, String period, String month, String day, String year) {
+        double totalRevenue = 0;
+        int monthInt = Integer.parseInt(month);
+        int yearInt = Integer.parseInt(year);
+        int dayInt = Integer.parseInt(day);
+        LocalDate startDate = LocalDate.of(yearInt, dayInt, monthInt);
+        // Loop through all transactions to calculate the revenue
 
+        for (Transaction transaction : transactions) {
+            LocalDate transactionDate = transaction.getTransactionDate();
+            switch (period.toLowerCase()) {
+                case "day":
+                    if (transactionDate.isEqual(startDate)) {
+                        totalRevenue += transaction.getTotalAmount();
+                    }
+                    break;
+
+                case "week":
+                    LocalDate endOfWeek = startDate.plusDays(6); // Define the week as 7 days
+                    if ((transactionDate.isEqual(startDate) || transactionDate.isAfter(startDate)) &&
+                            (transactionDate.isEqual(endOfWeek) || transactionDate.isBefore(endOfWeek))) {
+                        totalRevenue += transaction.getTotalAmount();
+                    }
+                    break;
+
+                case "month":
+                    if (transactionDate.getYear() == startDate.getYear() &&
+                            transactionDate.getMonthValue() == startDate.getMonthValue()) {
+                        totalRevenue += transaction.getTotalAmount();
+                    }
+                    break;
+
+                default:
+                    throw new IllegalArgumentException("Invalid period type. Use 'day', 'week', or 'month'.");
+            }
+        }
+        String revenueFormatted = String.format("%.0f", totalRevenue);
+        System.out.println("Total revenue in a "+ period+ " of "+ day+ ", "+ month + ", "+ year+ " is: "+ revenueFormatted);
     }
 
     public void listCarsOrServices(List<Car> cars, List<Service> services, String period) {
 
-    }
-
-    public void viewServiceHistory(List<Service> services, String mechanicID) {
-        System.out.println("\nService History: ");
-        boolean hasServices = false;
-        for (Service service : services) {
-            if (service.getMechanicID().equals(mechanicID)) {
-                System.out.println(service);
-                hasServices = true;
-            }
-        }
-        if (!hasServices) {
-            System.out.println("No service history found for this mechanic.");
-        }
     }
 }
 
