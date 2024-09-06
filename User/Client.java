@@ -27,6 +27,7 @@ public class Client extends User {
         updateMembership(); // Update membership based on the new total spending
     }
 
+    // Set amount for each membership
     public void updateMembership() {
         if (totalSpending > 250_000_000) {
             membership = "Platinum";
@@ -39,6 +40,8 @@ public class Client extends User {
         }
     }
 
+
+    // Set discount rate based on membership
     public double getDiscountRate() {
         switch (membership) {
             case "Silver":
@@ -59,8 +62,8 @@ public class Client extends User {
     public void viewServiceHistory(List<Service> services, String clientID) {
         System.out.println("\nService.Service History: ");
         boolean hasServices = false;
-        for (Service service : services) {
-            if (service.getClientID().equals(clientID)) {
+        for (Service service : services) { // Loop through services object
+            if (service.getClientID().equals(clientID)) { // Check for user ID
                 System.out.println(service);
                 hasServices = true;
             }

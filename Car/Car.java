@@ -31,6 +31,7 @@ public class Car {
         return carID;
     }
 
+    // Ensure the car ID follows c- format
     public void setCarID(String carID) {
         if (carID.matches("c-\\d+")) {
             this.carID = carID;

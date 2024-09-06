@@ -111,15 +111,17 @@ public class FileManager {
                 String[] data = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
 
                 List<Object> purchasedItems = new ArrayList<>();
+                // In testing process, data in the array duplicate the quote  everytime a new transaction is added
+                // data[4].replace("\"", "") to ensure that there is no duplicate
                 for (String item : data[4].replace("\"", "").split("\\s*,\\s*")) {
-                    if (item.startsWith("c-")) {
+                    if (item.startsWith("c-")) { // If the item checked using c- format
                         for (Car car : cars) {
                             if (car.getCarID().equals(item)) {
                                 purchasedItems.add(car);
                                 break;
                             }
                         }
-                    } else if (item.startsWith("p-")) {
+                    } else if (item.startsWith("p-")) { // If the item checked using p- format
                         for (AutoPart part : parts) {
                             if (part.getPartID().equals(item)) {
                                 purchasedItems.add(part);
@@ -194,7 +196,7 @@ public class FileManager {
                         + car.getColor() + ","
                         + car.getStatus() + ","
                         + car.getPrice() + ","
-                        + "\"" + serviceHistoryString + "\"," // Have to add double quotes to this, ran into an issue that cause the list disappear when performing another feature, problem is somehow solved after adding the quote
+                        + "\"" + serviceHistoryString + "\"," // Have to add double quotes to this, ran into an issue that cause the list disappear when performing another function, problem is somehow solved after adding the quote
                         + car.getNotes());
                 bw.newLine();
             }

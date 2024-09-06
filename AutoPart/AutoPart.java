@@ -29,6 +29,7 @@ public class AutoPart {
         return partID;
     }
 
+    // Ensure the part ID follows the p- format
     public void setPartID(String partID) {
         if (partID.matches("p-\\d+")) {
             this.partID = partID;
@@ -114,7 +115,7 @@ public class AutoPart {
 
             System.out.print("Enter service history: ");
             String serviceHistoryInput = scanner.nextLine();
-
+            // Remove the " " from the user input
             List<String> serviceHistory = new ArrayList<>(Arrays.asList(serviceHistoryInput.replace("\"", "").split("\\s*,\\s*")));
 
             Car newCar = new Car(
