@@ -23,6 +23,8 @@ public class ManagerOperation {
         System.out.println("\n********************************\n");
     }
 
+
+    // Statistics Operations
     public int calculateCarInOneTransaction(List<Object> purchasedItems){
         int count = 0;
 
@@ -34,7 +36,6 @@ public class ManagerOperation {
         return count;
     }
 
-    // Statistics Operations
     public void calculateCarsSoldInMonth(List<Transaction> transactions, String month, String year) {
         int numberOfCar = 0;
 

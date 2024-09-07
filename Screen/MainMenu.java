@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MainMenu {
-    protected static EmployeeOperation employeeOperation;
     public static void displayMenu(Scanner scanner, List<Car> cars, List<AutoPart> parts, List<Service> services, List<Transaction> transactions, List<User> users, User user) {
         int choice = -1;
 
