@@ -14,11 +14,13 @@ import AutoPart.PartManager;
 import User.UserManager;
 import Service.ServiceManager;
 import Transaction.TransactionManager;
+import UserOperation.EmployeeOperation;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class MainMenu {
+    protected static EmployeeOperation employeeOperation;
     public static void displayMenu(Scanner scanner, List<Car> cars, List<AutoPart> parts, List<Service> services, List<Transaction> transactions, List<User> users, User user) {
         int choice = -1;
 
@@ -26,35 +28,34 @@ public class MainMenu {
             System.out.println("\n--- MENU ---");
             System.out.println("1. View Profile");
             System.out.println("2. Logout");
-
             switch (user.getUserType()) {
-                case "User.Manager" -> {
-                    System.out.println("3. Add Car.Car");
-                    System.out.println("4. Remove Car.Car");
+                case "Manager" -> {
+                    System.out.println("3. Add Car");
+                    System.out.println("4. Remove Car");
                     System.out.println("5. Add Part");
                     System.out.println("6. Remove Part");
-                    System.out.println("7. Add Service.Service");
-                    System.out.println("8. Remove Service.Service");
-                    System.out.println("9. Add Transaction.Transaction");
-                    System.out.println("10. Remove Transaction.Transaction");
-                    System.out.println("11. Remove User.User");
+                    System.out.println("7. Add Service");
+                    System.out.println("8. Remove Service");
+                    System.out.println("9. Add Transaction");
+                    System.out.println("10. Remove Transaction");
+                    System.out.println("11. Remove User");
                     System.out.println("12. View All Entities");
                     System.out.println("13. Calculate Cars Sold in Month");
                     System.out.println("14. Calculate Revenue");
-                    System.out.println("15. Calculate Revenue for User.Mechanic");
-                    System.out.println("16. Calculate Revenue for User.Salesperson");
+                    System.out.println("15. Calculate Revenue for User");
+                    System.out.println("16. Calculate Revenue for User");
                     System.out.println("17. List Cars Sold");
                     System.out.println("18. List Transactions");
                     System.out.println("19. List Services");
                     System.out.println("20. List Auto Parts Sold");
                 }
-                case "User.Salesperson", "User.Mechanic" -> {
+                case "Mechanic","Salesperson" -> {
                     System.out.println("3. Calculate Revenue");
                     System.out.println("4. List Cars or Services");
                 }
-                case "User.Client" -> {
+                case "Client" -> {
                     System.out.println("3. View Membership Status");
-                    System.out.println("4. View Service.Service History");
+                    System.out.println("4. View Service History");
                     System.out.println("5. Update Full Name");
                     System.out.println("6. Update Username");
                     System.out.println("7. Update Password");
@@ -76,8 +77,8 @@ public class MainMenu {
                     break;
                 case 3:
                     switch (user.getUserType()) {
-                        case "User.Manager" -> AutoPart.CarManager.addCar(scanner, cars);
-                        case "User.Salesperson", "User.Mechanic" -> {
+                        case "Manager" -> AutoPart.CarManager.addCar(scanner, cars);
+                        case "Mechanic","Salesperson" -> {
                             System.out.print("Enter the period (day/week/month): ");
                             String period = scanner.nextLine();
                             System.out.print("Enter the day: ");
@@ -86,25 +87,32 @@ public class MainMenu {
                             String month = scanner.nextLine();
                             System.out.print("Enter the year: ");
                             String year = scanner.nextLine();
-                            ((Salesperson) user).getEmployeeOperation().calculateRevenue(transactions,period, day, month, year);
-                            ((Mechanic) user).getEmployeeOperation().calculateRevenue(transactions,period, day, month, year);
+                            if(user instanceof Mechanic){
+                                ((Mechanic) user).getEmployeeOperation().calculateRevenue(transactions,period, day, month, year);
+                            } else if(user instanceof Salesperson){
+                                ((Salesperson) user).getEmployeeOperation().calculateRevenue(transactions,period, day, month, year);
+                            }
                         }
-                        case "User.Client" -> ((Client) user).viewMembershipStatus();
+                        case "Client" -> ((Client) user).viewMembershipStatus();
                     }
                     break;
                 case 4:
                     switch (user.getUserType()) {
-                        case "User.Manager" -> AutoPart.CarManager.removeCar(scanner, cars);
-                        case "User.Salesperson", "User.Mechanic" -> {
+                        case "Manager" -> AutoPart.CarManager.removeCar(scanner, cars);
+                        case "Mechanic","Salesperson" -> {
                             System.out.print("Enter day/week/month to list cars or services: ");
                             String period = scanner.nextLine();
-                            ((Salesperson) user).getEmployeeOperation().listCarsOrServices(cars, services, period);
+                            if(user instanceof Mechanic){
+                                ((Mechanic) user).getEmployeeOperation().listCarsOrServices(cars, services, period);
+                            } else if(user instanceof Salesperson){
+                                ((Salesperson) user).getEmployeeOperation().listCarsOrServices(cars, services, period);
+                            }
                         }
-                        case "User.Client" -> ((Client) user).viewServiceHistory(services, user.getUserID());
+                        case "Client" -> ((Client) user).viewServiceHistory(services, user.getUserID());
                     }
                     break;
                 case 5:
-                    if (user.getUserType().equals("User.Manager")) {
+                    if (user.getUserType().equals("Manager")) {
                         PartManager.addPart(scanner, parts);
                     } else if (user instanceof Client client) {
                         System.out.print("Enter new full name: ");
@@ -114,7 +122,7 @@ public class MainMenu {
                     }
                     break;
                 case 6:
-                    if (user.getUserType().equals("User.Manager")) {
+                    if (user.getUserType().equals("Manager")) {
                         PartManager.removePart(scanner, parts);
                     } else if (user instanceof Client client) {
                         System.out.print("Enter new username: ");
@@ -124,7 +132,7 @@ public class MainMenu {
                     }
                     break;
                 case 7:
-                    if (user.getUserType().equals("User.Manager")) {
+                    if (user.getUserType().equals("Manager")) {
                         ServiceManager.addService(scanner, services, parts, users);
                     } else if (user instanceof Client client) {
                         System.out.print("Enter new password: ");
@@ -134,32 +142,32 @@ public class MainMenu {
                     }
                     break;
                 case 8:
-                    if (user.getUserType().equals("User.Manager")) {
+                    if (user.getUserType().equals("Manager")) {
                         ServiceManager.removeService(scanner, services);
                     }
                     break;
                 case 9:
-                    if (user.getUserType().equals("User.Manager")) {
+                    if (user.getUserType().equals("Manager")) {
                         TransactionManager.addTransaction(scanner, transactions, cars, parts, users);
                     }
                     break;
                 case 10:
-                    if (user.getUserType().equals("User.Manager")) {
+                    if (user.getUserType().equals("Manager")) {
                         TransactionManager.removeTransaction(scanner, transactions);
                     }
                     break;
                 case 11:
-                    if (user.getUserType().equals("User.Manager")) {
+                    if (user.getUserType().equals("Manager")) {
                         UserManager.removeUser(scanner, users);
                     }
                     break;
                 case 12:
-                    if (user.getUserType().equals("User.Manager")) {
+                    if (user.getUserType().equals("Manager")) {
                         ((Manager) user).getManagerOperation().viewEntities(cars, parts, services, transactions);
                     }
                     break;
                 case 13:
-                    if (user.getUserType().equals("User.Manager")) {
+                    if (user.getUserType().equals("Manager")) {
                         System.out.print("Enter the month: ");
                         String month = scanner.nextLine();
                         System.out.print("Enter the year: ");
@@ -168,7 +176,7 @@ public class MainMenu {
                     }
                     break;
                 case 14:
-                    if (user.getUserType().equals("User.Manager") || user.getUserType().equals("User.Salesperson") || user.getUserType().equals("User.Mechanic")) {
+                    if (user.getUserType().equals("Manager") || user.getUserType().equals("Mechanic") || user.getUserType().equals("Salesperson")) {
                         System.out.print("Enter the period (day/week/month): ");
                         String period = scanner.nextLine();
                         System.out.print("Enter the day: ");
@@ -182,21 +190,21 @@ public class MainMenu {
                     }
                     break;
                 case 15:
-                    if (user.getUserType().equals("User.Manager")) {
+                    if (user.getUserType().equals("Manager")) {
                         System.out.print("Enter the mechanic ID: ");
                         String mechanicID = scanner.nextLine();
                         ((Manager) user).getManagerOperation().calculateRevenueForMechanic(services, mechanicID);
                     }
                     break;
                 case 16:
-                    if (user.getUserType().equals("User.Manager")) {
+                    if (user.getUserType().equals("Manager")) {
                         System.out.print("Enter the salesperson ID: ");
                         String salespersonID = scanner.nextLine();
                         ((Manager) user).getManagerOperation().calculateRevenueForSalesperson(transactions, salespersonID);
                     }
                     break;
                 case 17:
-                    if (user.getUserType().equals("User.Manager")) {
+                    if (user.getUserType().equals("Manager")) {
                         System.out.print("Enter the period (day/week/month): ");
                         String period = scanner.nextLine();
                         System.out.print("Enter the day: ");
@@ -209,7 +217,7 @@ public class MainMenu {
                     }
                     break;
                 case 18:
-                    if (user.getUserType().equals("User.Manager")) {
+                    if (user.getUserType().equals("Manager")) {
                         System.out.print("Enter the period (day/week/month): ");
                         String period = scanner.nextLine();
                         System.out.print("Enter the day: ");
@@ -222,7 +230,7 @@ public class MainMenu {
                     }
                     break;
                 case 19:
-                    if (user.getUserType().equals("User.Manager")) {
+                    if (user.getUserType().equals("Manager")) {
                         System.out.print("Enter the period (day/week/month): ");
                         String period = scanner.nextLine();
                         System.out.print("Enter the day: ");
@@ -235,7 +243,7 @@ public class MainMenu {
                     }
                     break;
                 case 20:
-                    if (user.getUserType().equals("User.Manager")) {
+                    if (user.getUserType().equals("Manager")) {
                         System.out.print("Enter the period (day/week/month): ");
                         String period = scanner.nextLine();
                         System.out.print("Enter the day: ");
@@ -252,4 +260,5 @@ public class MainMenu {
             }
         }
     }
+
 }

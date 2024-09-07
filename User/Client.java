@@ -9,7 +9,7 @@ public class Client extends User {
     private double totalSpending;
 
     public Client(String userID, String fullName, String username, String password) {
-        super(userID, fullName, "User.Client", username, password);
+        super(userID, fullName, "Client", username, password);
         this.membership = "None"; // Default membership level
         this.totalSpending = 0.0;
     }
@@ -60,7 +60,7 @@ public class Client extends User {
     }
 
     public void viewServiceHistory(List<Service> services, String clientID) {
-        System.out.println("\nService.Service History: ");
+        System.out.println("\nService History: ");
         boolean hasServices = false;
         for (Service service : services) { // Loop through services object
             if (service.getClientID().equals(clientID)) { // Check for user ID

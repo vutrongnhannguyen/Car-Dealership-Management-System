@@ -87,7 +87,7 @@ public class ManagerOperation {
             }
         }
         String revenueFormatted = String.format("%.0f", totalRevenue);
-        System.out.println("Total revenue in a "+ period+ " of "+ day+ ", "+ month + ", "+ year+ " is: "+ revenueFormatted);
+        System.out.println("Total revenue in a "+ period+ " of "+ month+ ", "+ day + ", "+ year+ " is: "+ revenueFormatted);
     }
 
     public void calculateRevenueForMechanic(List<Service> services, String mechanicID) {

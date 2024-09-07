@@ -156,16 +156,16 @@ public class FileManager {
                 String[] data = line.split(",");
                 User user;
                 switch (data[2]) { // userType
-                    case "User.Manager":
+                    case "Manager":
                         user = new Manager(data[0], data[1], data[3], data[4]);
                         break;
-                    case "User.Salesperson":
-                        user = new Salesperson(data[0], data[1], data[3], data[4]);
+                    case "Salesperson":
+                        user = new Salesperson(data[0], data[1], data[2], data[3], data[4]);
                         break;
-                    case "User.Mechanic":
-                        user = new Mechanic(data[0], data[1], data[3], data[4]);
+                    case "Mechanic":
+                        user = new Mechanic(data[0], data[1], data[2], data[3], data[4]);
                         break;
-                    case "User.Client":
+                    case "Client":
                         user = new Client(data[0], data[1], data[3], data[4]);
                         ((Client) user).updateTotalSpending(Double.parseDouble(data[7])); // Load total spent
                         ((Client) user).updateMembership(); // Update membership based on total spent

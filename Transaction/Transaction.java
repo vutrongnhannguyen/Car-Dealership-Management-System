@@ -19,7 +19,7 @@ public class Transaction {
         this.clientID = clientID;
         setSalespersonID(salespersonID);
         this.purchasedItems = purchasedItems;
-        this.discount = discount;
+        this.discount = discount;   
         this.totalAmount = totalAmount;
         this.notes = notes;
     }

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Salesperson extends Employee {
 
-    public Salesperson(String userID, String fullName, String username, String password) {
-        super(userID, fullName, username, password);
+    public Salesperson(String userID, String fullName, String userType, String username, String password) {
+        super(userID, fullName, userType, username, password);
     }
 }

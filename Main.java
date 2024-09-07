@@ -40,8 +40,7 @@ public class Main {
             if (!loggedInUser.isActive()) {
                 System.out.println("The account has been deactivated, contact our hotline for support");
             } else {
-                System.out.println("\nLogin successful! " + loggedInUser.getFullName() + " (" + loggedInUser.getUserType() + ")");
-//                loggedInUser.displayMenu(scanner, cars, parts, services, transactions, users);
+                System.out.println("\nLogin successful! " + loggedInUser.getFullName());
                 MainMenu.displayMenu(scanner, cars, parts, services, transactions, users, loggedInUser);
                 // Save data to CSV files only if the logged in
                 FileManager.writeCars(cars, "Database/cars.csv");

@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class Mechanic extends Employee {
-    public Mechanic(String userID, String fullName, String username, String password) {
-        super(userID, fullName, username, password);
+    public Mechanic(String userID, String fullName, String userType, String username, String password) {
+        super(userID, fullName, userType, username, password);
     }
 }

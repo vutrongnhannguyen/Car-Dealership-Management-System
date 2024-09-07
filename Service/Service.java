@@ -104,6 +104,6 @@ public class Service {
 
     @Override
     public String toString() {
-        return "Service.Service ID: " + serviceID + ", Date: " + serviceDate + ", Type: " + serviceType;
+        return "Service ID: " + serviceID + ", Date: " + serviceDate + ", Type: " + serviceType;
     }
 }
