@@ -40,7 +40,6 @@ public class Client extends User {
         }
     }
 
-
     // Set discount rate based on membership
     public double getDiscountRate() {
         switch (membership) {
@@ -56,11 +55,14 @@ public class Client extends User {
     }
 
     public void viewMembershipStatus() {
-        System.out.println("Your membership is: " + membership);
+        System.out.println("\n********************************\n");
+        System.out.print("Your membership is: " + membership);
+        System.out.println("\n********************************\n");
     }
 
     public void viewServiceHistory(List<Service> services, String clientID) {
-        System.out.println("\nService History: ");
+        System.out.println("\n********************************\n");
+        System.out.print("Service History: ");
         boolean hasServices = false;
         for (Service service : services) { // Loop through services object
             if (service.getClientID().equals(clientID)) { // Check for user ID
@@ -71,6 +73,7 @@ public class Client extends User {
         if (!hasServices) {
             System.out.println("No service history found for this client");
         }
+        System.out.println("\n********************************\n");
     }
 
     // Methods to modify profile information

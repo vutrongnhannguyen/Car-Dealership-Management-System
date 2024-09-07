@@ -15,7 +15,7 @@ import User.UserManager;
 import Service.ServiceManager;
 import Transaction.TransactionManager;
 import UserOperation.EmployeeOperation;
-
+import Car.CarManager;
 import java.util.List;
 import java.util.Scanner;
 
@@ -77,7 +77,7 @@ public class MainMenu {
                     break;
                 case 3:
                     switch (user.getUserType()) {
-                        case "Manager" -> AutoPart.CarManager.addCar(scanner, cars);
+                        case "Manager" -> CarManager.addCar(scanner, cars);
                         case "Mechanic","Salesperson" -> {
                             System.out.print("Enter the period (day/week/month): ");
                             String period = scanner.nextLine();
@@ -98,14 +98,20 @@ public class MainMenu {
                     break;
                 case 4:
                     switch (user.getUserType()) {
-                        case "Manager" -> AutoPart.CarManager.removeCar(scanner, cars);
+                        case "Manager" -> CarManager.removeCar(scanner, cars);
                         case "Mechanic","Salesperson" -> {
-                            System.out.print("Enter day/week/month to list cars or services: ");
+                            System.out.print("Enter the period (day/week/month): ");
                             String period = scanner.nextLine();
+                            System.out.print("Enter the day: ");
+                            String day = scanner.nextLine();
+                            System.out.print("Enter the month: ");
+                            String month = scanner.nextLine();
+                            System.out.print("Enter the year: ");
+                            String year = scanner.nextLine();
                             if(user instanceof Mechanic){
-                                ((Mechanic) user).getEmployeeOperation().listCarsOrServices(cars, services, period);
+                                ((Mechanic) user).getEmployeeOperation().listNumberCarAndService(services, transactions, period, day, month, year);
                             } else if(user instanceof Salesperson){
-                                ((Salesperson) user).getEmployeeOperation().listCarsOrServices(cars, services, period);
+                                ((Salesperson) user).getEmployeeOperation().listNumberCarAndService(services, transactions, period, day, month, year);
                             }
                         }
                         case "Client" -> ((Client) user).viewServiceHistory(services, user.getUserID());

@@ -11,7 +11,8 @@ import java.util.List;
 public class ManagerOperation {
     // View/Search Operations
     public void viewEntities(List<Car> cars, List<AutoPart> parts, List<Service> services, List<Transaction> transactions) {
-        System.out.println("\n--- Cars ---");
+        System.out.println("\n********************************\n");
+        System.out.print("--- Cars ---");
         cars.forEach(System.out::println);
         System.out.println("\n--- Auto Parts ---");
         parts.forEach(System.out::println);
@@ -19,6 +20,7 @@ public class ManagerOperation {
         services.forEach(System.out::println);
         System.out.println("\n--- Transactions ---");
         transactions.forEach(System.out::println);
+        System.out.println("\n********************************\n");
     }
 
     public int calculateCarInOneTransaction(List<Object> purchasedItems){
@@ -46,8 +48,9 @@ public class ManagerOperation {
                 numberOfCar += calculateCarInOneTransaction(transaction.getPurchasedItems());
             }
         }
-
-        System.out.println("Number of cars sold in " + month + "-" + year + ": " + numberOfCar);
+        System.out.println("\n********************************\n");
+        System.out.print("Number of cars sold in " + month + "-" + year + ": " + numberOfCar);
+        System.out.println("\n********************************\n");
     }
 
     public void calculateRevenue(List<Transaction> transactions, String period, String month, String day, String year) {
@@ -87,7 +90,9 @@ public class ManagerOperation {
             }
         }
         String revenueFormatted = String.format("%.0f", totalRevenue);
-        System.out.println("Total revenue in a "+ period+ " of "+ month+ ", "+ day + ", "+ year+ " is: "+ revenueFormatted);
+        System.out.println("\n********************************\n");
+        System.out.print("Total revenue in a "+ period+ " of "+ month+ ", "+ day + ", "+ year+ " is: "+ revenueFormatted);
+        System.out.println("\n********************************\n");
     }
 
     public void calculateRevenueForMechanic(List<Service> services, String mechanicID) {
@@ -98,7 +103,9 @@ public class ManagerOperation {
             }
         }
         String revenueFormatted = String.format("%.0f", revenue);
+        System.out.println("\n********************************\n");
         System.out.print("Revenue for "+mechanicID+" is: " + revenueFormatted);
+        System.out.println("\n********************************\n");
     }
 
     public void calculateRevenueForSalesperson(List<Transaction> transactions, String salespersonID) {
@@ -109,13 +116,15 @@ public class ManagerOperation {
             }
         }
         String revenueFormatted = String.format("%.0f", revenue);
+        System.out.println("\n********************************\n");
         System.out.print("Revenue for "+salespersonID+" is: " + revenueFormatted);
+        System.out.println("\n********************************\n");
     }
 
     public void printCar(List<Object> purchasedItems){
         for (Object item : purchasedItems) {
             if (item instanceof Car) {
-                System.out.println(item);
+                System.out.print(item);
             }
         }
     }
@@ -126,7 +135,8 @@ public class ManagerOperation {
         int dayInt = Integer.parseInt(day);
         LocalDate startDate = LocalDate.of(yearInt, dayInt, monthInt);
         // Loop through all transactions to calculate the revenue
-        System.out.println("\n--- List Cars Sold ---");
+        System.out.println("\n********************************\n");
+        System.out.print("--- List Cars Sold ---");
         for (Transaction transaction : transactions) {
             LocalDate transactionDate = transaction.getTransactionDate();
             switch (period.toLowerCase()) {
@@ -156,6 +166,7 @@ public class ManagerOperation {
             }
         }
         System.out.println("----------------------");
+        System.out.println("\n********************************\n");
     }
 
     public void listTransactions(List<Transaction> transactions, String period, String month, String day, String year) {
@@ -164,7 +175,8 @@ public class ManagerOperation {
         int dayInt = Integer.parseInt(day);
         LocalDate startDate = LocalDate.of(yearInt, dayInt, monthInt);
         // Loop through all transactions to calculate the revenue
-        System.out.println("\n--- List Of Transaction.Transaction ---");
+        System.out.println("\n********************************\n");
+        System.out.print("--- List Of Transaction ---");
         for (Transaction transaction : transactions) {
             LocalDate transactionDate = transaction.getTransactionDate();
             switch (period.toLowerCase()) {
@@ -194,6 +206,7 @@ public class ManagerOperation {
             }
         }
         System.out.println("--------------------------");
+        System.out.println("\n********************************\n");
     }
 
     public void listServices(List<Service> services, String period, String month, String day, String year) {
@@ -202,7 +215,8 @@ public class ManagerOperation {
         int dayInt = Integer.parseInt(day);
         LocalDate startDate = LocalDate.of(yearInt, dayInt, monthInt);
         // Loop through all transactions to calculate the revenue
-        System.out.println("\n--- List Of Services ---");
+        System.out.println("\n********************************\n");
+        System.out.print("--- List Of Services ---");
         for (Service service : services) {
             LocalDate serviceDate = service.getServiceDate();
             switch (period.toLowerCase()) {
@@ -232,12 +246,13 @@ public class ManagerOperation {
             }
         }
         System.out.println("-----------------------");
+        System.out.println("\n********************************\n");
     }
 
     public void printAutoPart(List<Object> purchasedItems){
         for (Object item : purchasedItems) {
             if (item instanceof AutoPart) {
-                System.out.println(item);
+                System.out.print(item);
             }
         }
     }
@@ -248,7 +263,8 @@ public class ManagerOperation {
         int dayInt = Integer.parseInt(day);
         LocalDate startDate = LocalDate.of(yearInt, dayInt, monthInt);
         // Loop through all transactions to calculate the revenue
-        System.out.println("\n--- List Auto Parts Sold ---");
+        System.out.println("\n********************************\n");
+        System.out.print("--- List Auto Parts Sold ---");
         for (Transaction transaction : transactions) {
             LocalDate transactionDate = transaction.getTransactionDate();
             switch (period.toLowerCase()) {
@@ -278,5 +294,6 @@ public class ManagerOperation {
             }
         }
         System.out.println("----------------------------");
+        System.out.println("\n********************************\n");
     }
 }

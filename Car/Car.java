@@ -40,8 +40,6 @@ public class Car {
         }
     }
 
-
-
     public String getMake() {
         return make;
     }
@@ -120,6 +118,6 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car.Car ID: " + carID + ", Make: " + make + ", Model: " + model + ", Year: " + year + ", Status: " + status;
+        return "Car ID: " + carID + ", Make: " + make + ", Model: " + model + ", Year: " + year + ", Status: " + status;
     }
 }
