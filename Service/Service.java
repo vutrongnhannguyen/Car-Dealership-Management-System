@@ -104,6 +104,14 @@ public class Service {
 
     @Override
     public String toString() {
-        return "Service ID: " + serviceID + ", Date: " + serviceDate + ", Type: " + serviceType;
+        return "Service ID: " + serviceID +
+                ", Date: " + serviceDate +
+                ", Client ID: " + clientID +
+                ", Mechanic ID: " + mechanicID +
+                ", Service Type: " + serviceType +
+                ", Replaced Parts: " + replacedParts.stream()
+                .map(AutoPart::getPartID).reduce((a, b) -> a + ", " + b).orElse("None") +
+                ", Cost: " + cost +
+                ", Notes: " + notes;
     }
 }

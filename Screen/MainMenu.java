@@ -1,5 +1,6 @@
 package Screen;
 
+
 import AutoPart.AutoPart;
 import Car.Car;
 import FileHandler.FileManager;
@@ -17,6 +18,8 @@ import Transaction.TransactionManager;
 import UserOperation.EmployeeOperation;
 import Car.CarManager;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class MainMenu {
@@ -47,6 +50,8 @@ public class MainMenu {
                     System.out.println("18. List Transactions");
                     System.out.println("19. List Services");
                     System.out.println("20. List Auto Parts Sold");
+                    System.out.println("21. Update Entities");
+                    System.out.println("22. Read Entities");
                 }
                 case "Mechanic","Salesperson" -> {
                     System.out.println("3. Calculate Revenue");
@@ -258,6 +263,56 @@ public class MainMenu {
                         System.out.print("Enter the year: ");
                         String year = scanner.nextLine();
                         ((Manager) user).getManagerOperation().listAutoPartsSold(transactions,period, day, month, year);
+                    }
+                    break;
+                case 21:
+                    if (user.getUserType().equals("Manager")) {
+                        System.out.println("What would you like to update?");
+                        System.out.println("1. Car");
+                        System.out.println("2. Part");
+
+                        // Let the manager choose by entering a number
+                        System.out.print("Select an option: ");
+                        int updateChoice = scanner.nextInt();
+                        scanner.nextLine();
+
+                        switch (updateChoice) {
+                            case 1 -> CarManager.updateCar(scanner, cars);
+                            case 2 -> PartManager.updatePart(scanner, parts);
+                            default -> System.out.println("Invalid option");
+                        }
+                    }
+                    break;
+                case 22:
+                    if (user.getUserType().equals("Manager")) {
+                        boolean keepReading = true;
+
+                        while (keepReading) {
+                            System.out.println("What data would you like to access?");
+                            System.out.println("1. Car");
+                            System.out.println("2. Part");
+                            System.out.println("3. Service");
+                            System.out.println("4. Transaction");
+                            System.out.println("5. User");
+                            System.out.println("6. Exit");
+                            System.out.println("Select an option: ");
+
+                            int readChoice = scanner.nextInt();
+                            scanner.nextLine(); // consume newline
+
+                            switch (readChoice) {
+                                case 1 -> CarManager.readCarByID(scanner, cars);
+                                case 2 -> PartManager.readPartByID(scanner, parts);
+                                case 3 -> ServiceManager.readServiceByID(scanner, services);
+                                case 4 -> TransactionManager.readTransactionByID(scanner, transactions);
+                                case 5 -> UserManager.readUserByID(scanner, users);
+                                case 6 -> {
+                                    keepReading = false;
+                                    System.out.println("Returning to main menu...");
+                                }
+                                default -> System.out.println("Invalid option");
+                            }
+                        }
                     }
                     break;
                 default:

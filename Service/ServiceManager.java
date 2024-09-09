@@ -1,6 +1,7 @@
 package Service;
 
 import AutoPart.AutoPart;
+import FileHandler.FileManager;
 import User.Client;
 import User.Mechanic;
 import User.User;
@@ -133,4 +134,25 @@ public class ServiceManager {
         services.removeIf(service -> service.getServiceID().equals(serviceID));
         System.out.println("Service.Service removed successfully");
     }
+
+    public static void readServiceByID(Scanner scanner, List<Service> services) {
+        System.out.print("Enter the Service ID to access: ");
+        String serviceID = scanner.nextLine();
+
+        // Check Service ID
+        Service serviceToRead = null;
+        for (Service service : services) {
+            if (service.getServiceID().equals(serviceID)) {
+                serviceToRead = service;
+                break;
+            }
+        }
+
+        if (serviceToRead == null) {
+            System.out.println("Service ID " + serviceID + " does not exist");
+        } else {
+            System.out.println(serviceToRead);
+        }
+    }
+
 }

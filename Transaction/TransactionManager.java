@@ -2,6 +2,7 @@ package Transaction;
 
 import AutoPart.AutoPart;
 import Car.Car;
+import FileHandler.FileManager;
 import User.Client;
 import User.Salesperson;
 import User.User;
@@ -162,11 +163,31 @@ public class TransactionManager {
 
         if (!transactionExists) {
             System.out.println("Transaction.Transaction ID " + transactionID + " does not exist");
-            return; // Stop the process if the Transaction.Transaction ID does not exist
+            return;
         }
 
         transactions.removeIf(transaction -> transaction.getTransactionID().equals(transactionID));
 
         System.out.println("Transaction.Transaction with ID " + transactionID + " has been successfully removed");
+    }
+
+    public static void readTransactionByID(Scanner scanner, List<Transaction> transactions) {
+        System.out.print("Enter the Transaction ID to access: ");
+        String transactionID = scanner.nextLine();
+
+        // Check Transaction ID
+        Transaction transactionToRead = null;
+        for (Transaction transaction : transactions) {
+            if (transaction.getTransactionID().equals(transactionID)) {
+                transactionToRead = transaction;
+                break;
+            }
+        }
+
+        if (transactionToRead == null) {
+            System.out.println("Transaction ID " + transactionID + " does not exist");
+        } else {
+            System.out.println(transactionToRead);
+        }
     }
 }

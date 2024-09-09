@@ -2,6 +2,8 @@ package Transaction;
 
 import java.time.LocalDate;
 import java.util.List;
+import Car.Car;
+import AutoPart.AutoPart;
 
 public class Transaction {
     private String transactionID;
@@ -102,6 +104,21 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return String.format("Transaction.Transaction ID: %s, Date: %s, Total: %.0f", transactionID, transactionDate, totalAmount);
+        return "Transaction ID: " + transactionID +
+                ", Date: " + transactionDate +
+                ", Client ID: " + clientID +
+                ", Salesperson ID: " + salespersonID +
+                ", Purchased Items: " + purchasedItems.stream()
+                .map(item -> {
+                    if (item instanceof Car) {
+                        return "Car: " + ((Car) item).getCarID();
+                    } else if (item instanceof AutoPart) {
+                        return "Part: " + ((AutoPart) item).getPartID();
+                    }
+                    return "";
+                }).reduce((a, b) -> a + ", " + b).orElse("None") +
+                ", Discount: " + discount +
+                ", Total Amount: " + totalAmount +
+                ", Notes: " + notes;
     }
 }

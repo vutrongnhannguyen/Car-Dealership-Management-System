@@ -118,6 +118,15 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car ID: " + carID + ", Make: " + make + ", Model: " + model + ", Year: " + year + ", Status: " + status;
+        return "Car ID: " + carID +
+                ", Make: " + make +
+                ", Model: " + model +
+                ", Year: " + year +
+                ", Mileage: " + mileage +
+                ", Color: " + color +
+                ", Status: " + status +
+                ", Price: " + price +
+                ", Service History: " + String.join(", ", serviceHistory) +
+                ", Notes: " + notes;
     }
 }

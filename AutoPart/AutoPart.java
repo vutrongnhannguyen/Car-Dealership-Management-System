@@ -96,8 +96,14 @@ public class AutoPart {
 
     @Override
     public String toString() {
-        return "Part ID: " + partID + ", Name: " + name + ", Manufacturer: " + manufacturer;
+        return "Part ID: " + partID +
+                ", Name: " + name +
+                ", Manufacturer: " + manufacturer +
+                ", Part Number: " + partNumber +
+                ", Condition: " + condition +
+                ", Warranty: " + warranty +
+                ", Cost: " + cost +
+                ", Notes: " + notes;
     }
-
 
 }

@@ -40,4 +40,24 @@ public class UserManager {
         }
         System.out.println("User not found.");
     }
+
+    public static void readUserByID(Scanner scanner, List<User> users) {
+        System.out.print("Enter the User ID to access: ");
+        String userID = scanner.nextLine();
+
+        // Check if the User ID exists
+        User userToRead = null;
+        for (User user : users) {
+            if (user.getUserID().equals(userID)) {
+                userToRead = user;
+                break;
+            }
+        }
+
+        if (userToRead == null) {
+            System.out.println("User ID " + userID + " does not exist.");
+        } else {
+            System.out.println("User Details:\n" + userToRead);
+        }
+    }
 }
