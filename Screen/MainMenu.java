@@ -44,8 +44,8 @@ public class MainMenu {
                     System.out.println("12. View All Entities");
                     System.out.println("13. Calculate Cars Sold in Month");
                     System.out.println("14. Calculate Revenue");
-                    System.out.println("15. Calculate Revenue for User");
-                    System.out.println("16. Calculate Revenue for User");
+                    System.out.println("15. Calculate Revenue for Mechanic");
+                    System.out.println("16. Calculate Revenue for Salesperson");
                     System.out.println("17. List Cars Sold");
                     System.out.println("18. List Transactions");
                     System.out.println("19. List Services");
