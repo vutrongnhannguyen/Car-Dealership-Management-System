@@ -87,7 +87,7 @@ public class CarManager {
         boolean keepUpdating = true;
 
         while (keepUpdating) {
-
+            // Menu to update car
             System.out.println("\nWhat would you like to update?");
             System.out.println("1. Make");
             System.out.println("2. Model");

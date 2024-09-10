@@ -111,7 +111,7 @@ public class FileManager {
                 String[] data = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
 
                 List<Object> purchasedItems = new ArrayList<>();
-                // In testing process, data in the array duplicate the quote  everytime a new transaction is added
+                // In testing process, data in the array duplicate the quote everytime a new transaction is added
                 // data[4].replace("\"", "") to ensure that there is no duplicate
                 for (String item : data[4].replace("\"", "").split("\\s*,\\s*")) {
                     if (item.startsWith("c-")) { // If the item checked using c- format

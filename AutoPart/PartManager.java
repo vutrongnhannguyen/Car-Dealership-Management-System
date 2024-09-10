@@ -80,7 +80,7 @@ public class PartManager {
         boolean keepUpdating = true;
 
         while (keepUpdating) {
-
+            // Menu for updating parts
             System.out.println("\nWhat would you like to update?");
             System.out.println("1. Name");
             System.out.println("2. Manufacturer");

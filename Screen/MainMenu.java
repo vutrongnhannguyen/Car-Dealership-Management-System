@@ -70,6 +70,7 @@ public class MainMenu {
             choice = scanner.nextInt();
             scanner.nextLine();
 
+            // Display different options based on different user types
             switch (choice) {
                 case 1:
                     System.out.println("\n--- PROFILE ---");
