@@ -10,7 +10,7 @@ import java.util.*;
 
 public class ServiceManager {
     public static void addService(Scanner scanner, List<Service> services, List<AutoPart> parts, List<User> users) {
-        System.out.print("Enter service details (ID, Date (yyyy-mm-dd), User.Client ID, User.Mechanic ID, Service.Service Type, Cost, Notes): ");
+        System.out.print("Enter service details (ID, Date (yyyy-mm-dd), Client ID, Mechanic ID, Service Type, Cost, Notes): ");
         String serviceDetails = scanner.nextLine();
         String[] serviceData = serviceDetails.split(", ");
 

@@ -12,7 +12,7 @@ import java.util.*;
 
 public class TransactionManager {
     public static void addTransaction(Scanner scanner, List<Transaction> transactions, List<Car> cars, List<AutoPart> parts, List<User> users) {
-        System.out.print("Enter transaction details (Transaction.Transaction ID, Date (yyyy-mm-dd), User.Client ID, User.Salesperson ID, Total Amount, Notes): ");
+        System.out.print("Enter transaction details (Transaction ID, Date (yyyy-mm-dd), Client ID, Salesperson ID, Total Amount, Notes): ");
         String transactionDetails = scanner.nextLine();
         String[] transactionData = transactionDetails.split(", ");
 
