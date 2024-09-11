@@ -13,7 +13,7 @@ public class PartManager {
         // Check if the Part ID already exists
         for (AutoPart part : parts) {
             if (part.getPartID().equals(partData[0])) {
-                System.out.println("Part ID " + partData[0] + " already exists. Please use a unique Part ID");
+                System.out.println("Part ID " + partData[0] + " already exists");
                 return;
             }
         }
@@ -51,7 +51,7 @@ public class PartManager {
         }
 
         if (!partExists) {
-            System.out.println("Error: Part ID " + partID + " does not exist");
+            System.out.println("Part ID " + partID + " does not exist");
             return;
         }
 
@@ -73,7 +73,7 @@ public class PartManager {
         }
 
         if (partToUpdate == null) {
-            System.out.println("Error: Part ID " + partID + " does not exist");
+            System.out.println("Part ID " + partID + " does not exist");
             return;
         }
 

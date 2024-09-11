@@ -19,7 +19,7 @@ public class TransactionManager {
         // Check if the Transaction.Transaction ID already exists
         for (Transaction transaction : transactions) {
             if (transaction.getTransactionID().equals(transactionData[0])) {
-                System.out.println("Transaction.Transaction ID " + transactionData[0] + " already exists");
+                System.out.println("Transaction ID " + transactionData[0] + " already exists");
                 return;
             }
         }
@@ -46,7 +46,7 @@ public class TransactionManager {
                     }
                 }
                 if (!carFound) {
-                    System.out.println("Car.Car ID " + itemID + " does not exist.");
+                    System.out.println("Car ID " + itemID + " does not exist");
                     invalidItemFound = true;
                 }
             } else if (itemID.startsWith("p-")) {
@@ -59,7 +59,7 @@ public class TransactionManager {
                     }
                 }
                 if (!partFound) {
-                    System.out.println("Part ID " + itemID + " does not exist.");
+                    System.out.println("Part ID " + itemID + " does not exist");
                     invalidItemFound = true;
                 }
             } else {
@@ -81,12 +81,12 @@ public class TransactionManager {
                 .orElse(null);
 
         if (client == null) {
-            System.out.println("User.Client not found.");
+            System.out.println("Client not found");
             return;
         }
 
         if (!client.isActive()) {
-            System.out.println("User.Client is currently set to inactive and cannot make purchases.");
+            System.out.println("Client is currently set to inactive and cannot make purchases");
             return;
         }
 
@@ -97,12 +97,12 @@ public class TransactionManager {
                 .orElse(null);
 
         if (salesperson == null) {
-            System.out.println("There is no User.Salesperson with this user ID");
+            System.out.println("There is no Salesperson with this user ID");
             return;
         }
 
         if (!salesperson.isActive()) {
-            System.out.println("User.Salesperson is currently set to inactive");
+            System.out.println("Salesperson is currently set to inactive");
             return;
         }
 

@@ -13,7 +13,7 @@ public class CarManager {
         // Check if the Car.Car ID already exists
         for (Car car : cars) {
             if (car.getCarID().equals(carData[0])) {
-                System.out.println("Error: Car ID " + carData[0] + " already exists");
+                System.out.println("Car ID " + carData[0] + " already exists");
                 return;
             }
         }

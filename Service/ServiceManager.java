@@ -17,7 +17,7 @@ public class ServiceManager {
         // Check if the Service.Service ID already exists
         for (Service service : services) {
             if (service.getServiceID().equals(serviceData[0])) {
-                System.out.println("Service.Service ID " + serviceData[0] + " already exists");
+                System.out.println("Service ID " + serviceData[0] + " already exists");
                 return;
             }
         }
@@ -57,12 +57,12 @@ public class ServiceManager {
                 .orElse(null);
 
         if (client == null) {
-            System.out.println("User.Client not found");
+            System.out.println("Client not found");
             return;
         }
 
         if (!client.isActive()) {
-            System.out.println("User.Client is currently set to inactive and can not request any services");
+            System.out.println("Client is currently set to inactive and can not request any services");
             return;
         }
 
@@ -73,12 +73,12 @@ public class ServiceManager {
                 .orElse(null);
 
         if (mechanic == null) {
-            System.out.println("There is no User.Mechanic has this user ID");
+            System.out.println("There is no Mechanic has this user ID");
             return;
         }
 
         if (!mechanic.isActive()) {
-            System.out.println("User.Mechanic is currently set to inactive");
+            System.out.println("Mechanic is currently set to inactive");
             return;
         }
 
@@ -106,11 +106,11 @@ public class ServiceManager {
         services.sort(Comparator.comparing(Service::getServiceID));
 
         System.out.println("Applied discount: " + discount);
-        System.out.println("Service.Service added successfully");
+        System.out.println("Service added successfully");
     }
 
     public static void removeService(Scanner scanner, List<Service> services) {
-        System.out.print("Enter Service.Service ID to remove: ");
+        System.out.print("Enter Service ID to remove: ");
         String serviceID = scanner.nextLine();
 
         // Check if the Service.Service ID exists
@@ -123,12 +123,12 @@ public class ServiceManager {
         }
 
         if (!serviceExists) {
-            System.out.println("Service.Service ID " + serviceID + " does not exist");
+            System.out.println("Service ID " + serviceID + " does not exist");
             return;
         }
 
         services.removeIf(service -> service.getServiceID().equals(serviceID));
-        System.out.println("Service.Service removed successfully");
+        System.out.println("Service removed successfully");
     }
 
     public static void readServiceByID(Scanner scanner, List<Service> services) {
