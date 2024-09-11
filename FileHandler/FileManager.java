@@ -21,6 +21,9 @@ public class FileManager {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
+                // We use array to store data of some fields in the csv file
+                // The data is written in double quotes " " and separated with comma
+                // This expression is used to ignore the comma in the double quotes
                 String[] data = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
 
                 List<String> serviceHistory = new ArrayList<>(List.of(data[8].replace("\"", "").split("\\s*,\\s*")));
