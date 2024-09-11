@@ -34,7 +34,7 @@ public class UserManager {
         for (User user : users) {
             if (user.getUserID().equals(userID)) {
                 user.setActive(false);
-                System.out.println("User deactivated successfully.");
+                System.out.println("User deactivated successfully");
                 return;
             }
         }
@@ -55,7 +55,7 @@ public class UserManager {
         }
 
         if (userToRead == null) {
-            System.out.println("User ID " + userID + " does not exist.");
+            System.out.println("User ID " + userID + " does not exist");
         } else {
             System.out.println("User Details:\n" + userToRead);
         }

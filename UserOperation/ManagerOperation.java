@@ -12,7 +12,7 @@ public class ManagerOperation {
     // View/Search Operations
     public void viewEntities(List<Car> cars, List<AutoPart> parts, List<Service> services, List<Transaction> transactions) {
         System.out.println("\n********************************\n");
-        System.out.print("--- Cars ---");
+        System.out.println("\n--- Cars ---");
         cars.forEach(System.out::println);
         System.out.println("\n--- Auto Parts ---");
         parts.forEach(System.out::println);

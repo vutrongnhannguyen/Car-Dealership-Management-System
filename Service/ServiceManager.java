@@ -46,7 +46,6 @@ public class ServiceManager {
 
         // If any invalid parts were found, stop the process
         if (invalidPartFound) {
-            System.out.println("Invalid part IDs");
             return;
         }
 

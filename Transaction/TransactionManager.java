@@ -135,7 +135,7 @@ public class TransactionManager {
 
         System.out.println("Applied discount: " + discount);
         System.out.println("Total amount after discount: " + totalAmount);
-        System.out.println("Transaction.Transaction added successfully");
+        System.out.println("Transaction added successfully");
 
         // Update car status
         for (Object item : purchasedItems) {
@@ -149,7 +149,7 @@ public class TransactionManager {
     }
 
     public static void removeTransaction(Scanner scanner, List<Transaction> transactions) {
-        System.out.print("Enter Transaction.Transaction ID to remove: ");
+        System.out.print("Enter Transaction ID to remove: ");
         String transactionID = scanner.nextLine();
 
         // Check if the Transaction.Transaction ID exists
@@ -162,13 +162,13 @@ public class TransactionManager {
         }
 
         if (!transactionExists) {
-            System.out.println("Transaction.Transaction ID " + transactionID + " does not exist");
+            System.out.println("Transaction ID " + transactionID + " does not exist");
             return;
         }
 
         transactions.removeIf(transaction -> transaction.getTransactionID().equals(transactionID));
 
-        System.out.println("Transaction.Transaction with ID " + transactionID + " has been successfully removed");
+        System.out.println("Transaction with ID " + transactionID + " has been successfully removed");
     }
 
     public static void readTransactionByID(Scanner scanner, List<Transaction> transactions) {
