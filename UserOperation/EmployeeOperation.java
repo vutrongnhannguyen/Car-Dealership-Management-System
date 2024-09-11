@@ -57,7 +57,7 @@ public class EmployeeOperation {
             LocalDate transactionDate = transaction.getTransactionDate();
             if ((transactionDate.isEqual(startDate) || transactionDate.isAfter(startDate))
                     && (transactionDate.isEqual(endDate) || transactionDate.isBefore(endDate))) {
-                count = countCarInItem(transaction.getPurchasedItems());
+                count += countCarInItem(transaction.getPurchasedItems());
             }
         }
         return count;
