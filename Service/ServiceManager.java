@@ -1,7 +1,6 @@
 package Service;
 
 import AutoPart.AutoPart;
-import FileHandler.FileManager;
 import User.Client;
 import User.Mechanic;
 import User.User;
@@ -85,13 +84,10 @@ public class ServiceManager {
 
         double serviceCost = Double.parseDouble(serviceData[5]); // Original service cost
 
-        double discount = 0.0;
-        if (client != null) {
-            double discountRate = client.getDiscountRate();
-            discount = serviceCost * discountRate; // Calculate discount
-            serviceCost = serviceCost - discount; // Apply the discount
-            client.updateTotalSpending(serviceCost); // Update the client’s total spending
-        }
+        double discountRate = client.getDiscountRate();
+        double discount = serviceCost * discountRate; // Calculate discount
+        serviceCost = serviceCost - discount; // Apply the discount
+        client.updateTotalSpending(serviceCost); // Update the client’s total spending
 
         // Create the service object
         Service newService = new Service(
